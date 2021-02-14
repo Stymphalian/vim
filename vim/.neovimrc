@@ -1,0 +1,16 @@
+" Neovim specific settings
+" -----------------------------------------------------------------------------
+
+"Use system clipbaord 
+set clipboard+=unnamedplus
+
+"Neovim terminal emulator mode
+
+"Map the escape sequence to "j + k"
+tnoremap jk  <C-\><C-n>|                           
+
+"Run the last command from the terminal
+nnoremap <leader>m  i<up><cr><cr>|                 
+
+"paste what you last yanked and then run the previous command
+nnoremap <leader>mp i<up> <C-\><C-n>pi<cr><cr>|     

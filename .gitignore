@@ -1,0 +1,8 @@
+*~
+*.tmp
+*.bak
+noin
+*.exe
+*.swp
+vim/default.session.vim*
+

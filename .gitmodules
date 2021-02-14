@@ -1,0 +1,81 @@
+[submodule "vim/pack/default/opt/vim-lsp"]
+	path = vim/pack/default/opt/vim-lsp
+	url = https://github.com/prabirshrestha/vim-lsp
+[submodule "vim/pack/default/opt/async.vim"]
+	path = vim/pack/default/opt/async.vim
+	url = https://github.com/prabirshrestha/async.vim
+[submodule "vim/pack/default/opt/asyncomplete.vim"]
+	path = vim/pack/default/opt/asyncomplete.vim
+	url = https://github.com/prabirshrestha/asyncomplete.vim
+[submodule "vim/pack/default/opt/asyncomplete-lsp.vim"]
+	path = vim/pack/default/opt/asyncomplete-lsp.vim
+	url = https://github.com/prabirshrestha/asyncomplete-lsp.vim
+[submodule "vim/pack/default/opt/vim-codefmt"]
+	path = vim/pack/default/opt/vim-codefmt
+	url = https://github.com/google/vim-codefmt
+[submodule "vim/pack/default/opt/vim-maktaba"]
+	path = vim/pack/default/opt/vim-maktaba
+	url = https://github.com/google/vim-maktaba
+[submodule "vim/pack/default/opt/vim-glaive"]
+	path = vim/pack/default/opt/vim-glaive
+	url = https://github.com/google/vim-glaive
+[submodule "vim/pack/default/opt/vim-autoformat"]
+	path = vim/pack/default/opt/vim-autoformat
+	url = https://github.com/Chiel92/vim-autoformat
+[submodule "vim/pack/default/opt/vim-easymotion"]
+	path = vim/pack/default/opt/vim-easymotion
+	url = https://github.com/easymotion/vim-easymotion
+[submodule "vim/pack/default/opt/vim-signify"]
+	path = vim/pack/default/opt/vim-signify
+	url = https://github.com/mhinz/vim-signify
+[submodule "vim/pack/default/opt/vim-sneak"]
+	path = vim/pack/default/opt/vim-sneak
+	url = https://github.com/justinmk/vim-sneak
+[submodule "vim/pack/default/opt/ctrlp-py-matcher"]
+	path = vim/pack/default/opt/ctrlp-py-matcher
+	url = https://github.com/FelikZ/ctrlp-py-matcher
+[submodule "vim/pack/default/opt/vim-suround"]
+	path = vim/pack/default/opt/vim-suround
+	url = https://github.com/tpope/vim-surround
+[submodule "vim/pack/default/opt/vim-surround"]
+	path = vim/pack/default/opt/vim-surround
+	url = https://github.com/tpope/vim-surround
+[submodule "vim/pack/default/opt/vim-glsl"]
+	path = vim/pack/default/opt/vim-glsl
+	url = https://github.com/tikhomirov/vim-glsl
+[submodule "vim/pack/default/opt/ctrlp"]
+	path = vim/pack/default/opt/ctrlp
+	url = https://github.com/ctrlpvim/ctrlp.vim
+[submodule "vim/pack/default/opt/molokai"]
+	path = vim/pack/default/opt/molokai
+	url = https://github.com/tomasr/molokai
+[submodule "vim/pack/default/opt/nerdcommenter"]
+	path = vim/pack/default/opt/nerdcommenter
+	url = https://github.com/scrooloose/nerdcommenter
+[submodule "vim/pack/default/opt/nerdtree"]
+	path = vim/pack/default/opt/nerdtree
+	url = https://github.com/scrooloose/nerdtree
+[submodule "vim/pack/default/opt/rust.vim"]
+	path = vim/pack/default/opt/rust.vim
+	url = https://github.com/rust-lang/rust.vim
+[submodule "vim/pack/default/opt/syntastic"]
+	path = vim/pack/default/opt/syntastic
+	url = https://github.com/vim-syntastic/syntastic
+[submodule "vim/pack/default/opt/vim-airline"]
+	path = vim/pack/default/opt/vim-airline
+	url = https://github.com/vim-airline/vim-airline
+[submodule "vim/pack/default/opt/vim-buffergator"]
+	path = vim/pack/default/opt/vim-buffergator
+	url = https://github.com/jeetsukumaran/vim-buffergator
+[submodule "vim/pack/default/opt/vim-monokai"]
+	path = vim/pack/default/opt/vim-monokai
+	url = https://github.com/sickill/vim-monokai
+[submodule "vim/pack/default/opt/vim-numbertoggle"]
+	path = vim/pack/default/opt/vim-numbertoggle
+	url = https://github.com/jeffkreeftmeijer/vim-numbertoggle
+[submodule "vim/pack/default/opt/vim-airline-themes"]
+	path = vim/pack/default/opt/vim-airline-themes
+	url = https://github.com/vim-airline/vim-airline-themes
+[submodule "vim/pack/default/opt/YouCompleteMe"]
+	path = vim/pack/default/opt/YouCompleteMe
+	url = https://github.com/ycm-core/YouCompleteMe

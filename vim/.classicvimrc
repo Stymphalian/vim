@@ -1,0 +1,7 @@
+"" Class vimrc settings
+" ----------------------------------------------------------------------------
+
+" Make "%" command matching better
+if !has('nvim')
+  packadd matchit
+endif
