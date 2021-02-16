@@ -5,4 +5,5 @@ noin
 *.exe
 *.swp
 vim/default.session.vim*
+vim/plugged
 

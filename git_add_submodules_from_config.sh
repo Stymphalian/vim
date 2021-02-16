@@ -6,6 +6,8 @@ for path in $subpaths; do
   repo=$(echo "$subrepos"| sed $iterator'q;d');
   #echo $repo $path
   git submodule add $repo $path;
+  #git submodule deinit -f $path;
+  #git rm -f $path
   let iterator++;
 done
 

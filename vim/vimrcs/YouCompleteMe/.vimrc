@@ -1,6 +1,12 @@
 """YouCompleteMe
 nnoremap <leader>gd :YcmCompleter GoTo<CR>
-nnoremap <leader>gr :YcmCompleter GetDoc<CR>
+nnoremap <leader>gD :YcmCompleter GoToDeclaration<CR>
+nnoremap <leader>gI :YcmCompleter GoToDefinition<CR>
+nnoremap <leader>gi :YcmCompleter GoToImplementation<CR>
+nnoremap <leader>gr :YcmCompleter GoToReferences<CR>
+nnoremap <leader>gk :YcmCompleter GetDoc<CR>
+
+"nnoremap <leader>gr :YcmCompleter GetDoc<CR>
 
 let g:ycm_confirm_extra_conf = 0
 let g:ycm_autoclose_preview_window_after_completion = 1

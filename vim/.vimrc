@@ -11,93 +11,70 @@ let iswork=0
 syntax on
 filetype plugin indent on
 
-"source ~/.vim/pack_vimrc/vim-maktaba/.vimrc          "empty
-"packadd vim-maktaba
-
-"source ~/.vim/pack_vimrc/vim-glaive/.vimrc           "empty
-"packadd vim-glaive
-
-source ~/.vim/pack_vimrc/ctrlp/.vimrc                "<leader>p
-packadd ctrlp 
-
-source ~/.vim/pack_vimrc/nerdtree/.vimrc             "<leader>d
-packadd nerdtree  
-
-source ~/.vim/pack_vimrc/nerdcommenter/.vimrc        "<leader>/
-packadd nerdcommenter
-
-source ~/.vim/pack_vimrc/vim-buffergator/.vimrc      "<leader>b
-packadd vim-buffergator  
-
-"source ~/.vim/pack_vimrc/vim-signify/.vimrc          "<leader>c
-"packadd vim-signify
-"
-"source ~/.vim/pack_vimrc/syntastic/.vimrc            "empty
-"packadd syntastic 
-
-if !iswork
-  source ~/.vim/pack_vimrc/YouCompleteMe/.vimrc        "<leader>g
-  packadd YouCompleteMe
+" Install vim-plug if not found
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 endif
 
-"source ~/.vim/pack_vimrc/async.vim/.vimrc            "<leader>g
-"packadd async.vim 
+call plug#begin('~/.vim/plugged')
+" Good things
+Plug 'https://github.com/ctrlpvim/ctrlp.vim'
+Plug 'https://github.com/scrooloose/nerdtree'
+Plug 'https://github.com/scrooloose/nerdcommenter'
+Plug 'https://github.com/jeetsukumaran/vim-buffergator'
+Plug 'https://github.com/jeffkreeftmeijer/vim-numbertoggle'
 
-"source ~/.vim/pack_vimrc/vim-lsp/.vimrc              "<leader>g
-"packadd vim-lsp  
+" Easy movement
+Plug 'https://github.com/justinmk/vim-sneak'
+Plug 'https://github.com/tpope/vim-surround'
 
-"source ~/.vim/pack_vimrc/asyncomplete-lsp.vim/.vimrc "<leader>g
-"packadd asyncomplete-lsp.vim  
+" Status-line
+Plug 'https://github.com/vim-airline/vim-airline'
+Plug 'https://github.com/vim-airline/vim-airline-themes'
 
-"source ~/.vim/pack_vimrc/asyncomplete.vim/.vimrc     "<leader>g
-"packadd asyncomplete.vim 
+" Autocomplete
+"Plug 'https://github.com/ycm-core/YouCompleteMe'
+"Plug 'https://github.com/FelikZ/ctrlp-py-matcher'
+Plug 'https://github.com/neoclide/coc.nvim/'
 
-if !iswork 
-  "source ~/.vim/pack_vimrc/rust.vim/.vimrc             "<leader>r
-  "packadd rust.vim  
-endif
+" Themes
+Plug 'https://github.com/tomasr/molokai'
+Plug 'https://github.com/sickill/vim-monokai'
 
-source ~/.vim/pack_vimrc/vim-airline/.vimrc          "empty
-packadd vim-airline 
+" Language Syntax
+Plug 'https://github.com/sheerun/vim-polyglot'
+"Plug 'https://github.com/tikhomirov/vim-glsl'
+"Plug 'https://github.com/rust-lang/rust.vim'
 
-source ~/.vim/pack_vimrc/vim-numbertoggle/.vimrc     "empty
-packadd vim-numbertoggle  
-
-source ~/.vim/pack_vimrc/vim-airline-themes/.vimrc   "empty
-packadd vim-airline-themes 
-
-"source ~/.vim/pack_vimrc/syntastic/.vimrc            "empty
-"packadd syntastic 
-
-source ~/.vim/pack_vimrc/ctrlp-py-matcher/.vimrc     "empty
-packadd ctrlp-py-matcher
-
-"source ~/.vim/pack_vimrc/molokai/.vimrc              "empty
-"packadd molokai 
-
-"source ~/.vim/pack_vimrc/vim-monokai/.vimrc          "empty
-"packadd vim-monokai 
-
-"source ~/.vim/pack_vimrc/vim-codefmt/.vimrc          "empty
-"packadd vim-codefmt
-
-"source ~/.vim/pack_vimrc/vim-autoformat/.vimrc       "empty
-"packadd vim-autoformat
-
-"source ~/.vim/pack_vimrc/vim-easymotion/.vimrc       "empty
-"packadd vim-easymotion
+" Other plugins I've used before, but don't need right now
+"Plug 'https://github.com/google/vim-maktaba'
+"Plug 'https://github.com/google/vim-glaive'
+"Plug 'https://github.com/mhinz/vim-signify'
+"Plug 'https://github.com/vim-syntastic/syntastic'
+"Plug 'https://github.com/easymotion/vim-easymotion'
+"Plug 'https://github.com/prabirshrestha/vim-lsp'
+"Plug 'https://github.com/prabirshrestha/async.vim'
+"Plug 'https://github.com/prabirshrestha/asyncomplete.vim'
+"Plug 'https://github.com/prabirshrestha/asyncomplete-lsp.vim'
+"Plug 'https://github.com/google/vim-codefmt'
+"Plug 'https://github.com/Chiel92/vim-autoformat'
 "
-source ~/.vim/pack_vimrc/vim-sneak/.vimrc            "empty
-packadd vim-sneak
+call plug#end()
 
-"source ~/.vim/pack_vimrc/python-mode/.vimrc           "empty
-"packadd python-mode
-
-source ~/.vim/pack_vimrc/vim-surround/.vimrc        "empty
-packadd vim-surround
-
-source ~/.vim/pack_vimrc/vim-glsl/.vimrc            "empty
-packadd vim-glsl
+source ~/.vim/vimrcs/ctrlp/.vimrc                 "<leader>m
+source ~/.vim/vimrcs/nerdtree/.vimrc              "<leader>d
+source ~/.vim/vimrcs/nerdcommenter/.vimrc         "<leader>/
+source ~/.vim/vimrcs/vim-buffergator/.vimrc       "<leader>b
+source ~/.vim/vimrcs/vim-numbertoggle/.vimrc      "empty
+source ~/.vim/vimrcs/vim-sneak/.vimrc             "empty
+source ~/.vim/vimrcs/vim-surround/.vimrc          "empty
+source ~/.vim/vimrcs/vim-airline/.vimrc           "empty
+source ~/.vim/vimrcs/vim-airline-themes/.vimrc    "empty
+source ~/.vim/vimrcs/coc.nvim/.vimrc              "<leader>g
+"source ~/.vim/vimrcs/YouCompleteMe/.vimrc        "<leader>g
+"source ~/.vim/vimrcs/ctrlp-py-matcher/.vimrc     "empty
+source ~/.vim/vimrcs/vim-polyglot/.vimrc          "empty
 
 " ----------------------------------------------------------------------------
 " End Plugins!!
@@ -152,6 +129,8 @@ let loaded_matchparen=1  "Disable '{' highlight matching
 
 set lazyredraw      "Faster macros appliction
 
+set pastetoggle=<leader>sp
+
 " -----------------------------------------------------------------------------
 " Custom key-mappings
 " i - insert mode
@@ -178,8 +157,6 @@ nnoremap LL L|        "Map "L + L" to go to the bottom of the visible scren
 nnoremap H ^|         "Map "H" to go the first character of the line
 nnoremap L $|         "Map "L" to go the last charcter of the line
 
-command! W write      "Set the comand :W to do a write
-
 "In insert allows you to use hjkl to move around by pressing <CTRL-blah>
 "The <C-o> in insert mode is a special hotkey which puts you back into normal
 "mode for one command and then transfers you back into insert mode.
@@ -188,8 +165,14 @@ inoremap <C-j> <C-o>j
 inoremap <C-k> <C-o>k
 inoremap <C-l> <C-o>l
 
-nnoremap <leader>ve  :e ~/.vim/.vimrc<cr>Gj|  "Open the vimrc in a new vertical 
+"nnoremap <leader>ve  :e ~/.vim/.vimrc<cr>Gj|  "Open the vimrc in a new vertical 
+nnoremap <leader>ve  :e ~/.vim/.vimrc<cr>|  "Open the vimrc in a new vertical 
 nnoremap <leader>vr  :source $MYVIMRC<cr>|    "Source the vimrc into the session
+
+" ---------------------------------------------------------------------------
+" Commands
+" ---------------------------------------------------------------------------
+command! W write      "Set the comand :W to do a write
 
 " ---------------------------------------------------------------------------
 " Autocmds
@@ -211,14 +194,24 @@ colorscheme molokai
 " Neovim specific settings
 " ----------------------------------------------------------------------------
 if has('nvim')
-  source ~/.vim/.neovimrc
+  "source ~/.vim/.neovimrc
+  "Use system clipbaord 
+  set clipboard+=unnamedplus
+  "Map the escape sequence to "j + k"
+  tnoremap jk  <C-\><C-n>|                           
+  "Run the last command from the terminal
+  nnoremap <leader>m  i<up><cr><cr>|                 
+  "paste what you last yanked and then run the previous command
+  nnoremap <leader>mp i<up> <C-\><C-n>pi<cr><cr>|     
 endif
 
 " ----------------------------------------------------------------------------
 " Classic Vim specific settings
 " ----------------------------------------------------------------------------
 if !has('nvim')
-  source ~/.vim/.classicvimrc
+  "source ~/.vim/.classicvimrc
+  " Make "%" command matching better
+  packadd matchit
 endif
 
 " ----------------------------------------------------------------------------
@@ -231,8 +224,6 @@ endif
 " ;cw      -- show quickfix window
 " :ccl     -- close quickfix window
 " :grep! <vim regex pattern>   -- grep for a file
-
-set pastetoggle=<leader>sp
 
 " in command-mode, search mode etc use <CTRL-R> to print the contents of a 
 " register
