@@ -6,7 +6,7 @@ let mapleader=','
 let iswork=0
 
 " ----------------------------------------------------------------------------
-" Start Plugins!!
+" plugins start
 " ----------------------------------------------------------------------------
 syntax on
 filetype plugin indent on
@@ -18,12 +18,19 @@ if empty(glob('~/.vim/autoload/plug.vim'))
 endif
 
 call plug#begin('~/.vim/plugged')
+
+"Plug '~/dev/lab/vim/jordan.vim'
+
 " Good things
 Plug 'https://github.com/ctrlpvim/ctrlp.vim'
 Plug 'https://github.com/scrooloose/nerdtree'
 Plug 'https://github.com/scrooloose/nerdcommenter'
 Plug 'https://github.com/jeetsukumaran/vim-buffergator'
 Plug 'https://github.com/jeffkreeftmeijer/vim-numbertoggle'
+
+" Version Control
+"Plug 'https://github.com/tpope/vim-fugitive'
+Plug 'https://github.com/airblade/vim-gitgutter'
 
 " Easy movement
 Plug 'https://github.com/justinmk/vim-sneak'
@@ -46,6 +53,7 @@ Plug 'https://github.com/sickill/vim-monokai'
 Plug 'https://github.com/sheerun/vim-polyglot'
 "Plug 'https://github.com/tikhomirov/vim-glsl'
 "Plug 'https://github.com/rust-lang/rust.vim'
+"Plug 'https://github.com/tpope/vim-ragtag'
 
 " Other plugins I've used before, but don't need right now
 "Plug 'https://github.com/google/vim-maktaba'
@@ -62,6 +70,7 @@ Plug 'https://github.com/sheerun/vim-polyglot'
 "
 call plug#end()
 
+" plugins vimrcs
 source ~/.vim/vimrcs/ctrlp/.vimrc                 "<leader>m
 source ~/.vim/vimrcs/nerdtree/.vimrc              "<leader>d
 source ~/.vim/vimrcs/nerdcommenter/.vimrc         "<leader>/
@@ -77,7 +86,7 @@ source ~/.vim/vimrcs/coc.nvim/.vimrc              "<leader>g
 source ~/.vim/vimrcs/vim-polyglot/.vimrc          "empty
 
 " ----------------------------------------------------------------------------
-" End Plugins!!
+" Plugins End
 " ----------------------------------------------------------------------------
 
 " ----------------------------------------------------------------------------
@@ -116,6 +125,7 @@ set colorcolumn=80,100  "color column 80 and column 100
 set number              "print the line number in the left-margin
 set numberwidth=2       "number of columns to use to dispaly the number
 set cursorline          "highlight the linet he cursor is currently on
+set signcolumn=yes
 
 set showcmd         "show partial-comands in the bottom bar
 set incsearch       "As you do '/' comamnds serach, highlight the findings
@@ -165,9 +175,12 @@ inoremap <C-j> <C-o>j
 inoremap <C-k> <C-o>k
 inoremap <C-l> <C-o>l
 
+" Stuff
+"iabbrev <// </<C-X><C-O>
+
 "nnoremap <leader>ve  :e ~/.vim/.vimrc<cr>Gj|  "Open the vimrc in a new vertical 
 nnoremap <leader>ve  :e ~/.vim/.vimrc<cr>|  "Open the vimrc in a new vertical 
-nnoremap <leader>vr  :source $MYVIMRC<cr>|    "Source the vimrc into the session
+nnoremap <leader>vr  :source $MYVIMRC<cr>|  "Source the vimrc into the session
 
 " ---------------------------------------------------------------------------
 " Commands
@@ -196,13 +209,13 @@ colorscheme molokai
 if has('nvim')
   "source ~/.vim/.neovimrc
   "Use system clipbaord 
-  set clipboard+=unnamedplus
+  "set clipboard+=unnamedplus
   "Map the escape sequence to "j + k"
   tnoremap jk  <C-\><C-n>|                           
   "Run the last command from the terminal
-  nnoremap <leader>m  i<up><cr><cr>|                 
+  tnoremap <leader>m  i<up><cr><cr>|                 
   "paste what you last yanked and then run the previous command
-  nnoremap <leader>mp i<up> <C-\><C-n>pi<cr><cr>|     
+  tnoremap <leader>mp i<up> <C-\><C-n>pi<cr><cr>|     
 endif
 
 " ----------------------------------------------------------------------------
