@@ -19,7 +19,11 @@ endif
 
 call plug#begin('~/.vim/plugged')
 
-"Plug '~/dev/lab/vim/jordan.vim'
+"Plug 'https://github.com/inkarkat/vim-ingo-library'
+"Plug 'https://github.com/kamykn/popup-menu.nvim'
+Plug '~/dev/lab/vim/jordan.vim'
+Plug '~/dev/lab/vim/jyup.vim'
+"Plug '~/dev/lab/vim/swit_ch.vim'
 
 " Good things
 Plug 'https://github.com/ctrlpvim/ctrlp.vim'
@@ -27,6 +31,7 @@ Plug 'https://github.com/scrooloose/nerdtree'
 Plug 'https://github.com/scrooloose/nerdcommenter'
 Plug 'https://github.com/jeetsukumaran/vim-buffergator'
 Plug 'https://github.com/jeffkreeftmeijer/vim-numbertoggle'
+Plug 'https://github.com/Stymphalian/swit_ch.vim'
 
 " Version Control
 "Plug 'https://github.com/tpope/vim-fugitive'
@@ -70,11 +75,22 @@ Plug 'https://github.com/sheerun/vim-polyglot'
 "
 call plug#end()
 
+if has('nvim')
+  call plug#begin('~/.vim/plugged')
+  Plug 'nvim-lua/plenary.nvim'
+  Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+  Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
+  Plug 'nvim-telescope/telescope.nvim'
+  call plug#end()
+endif
+
+
 " plugins vimrcs
 source ~/.vim/vimrcs/ctrlp/.vimrc                 "<leader>m
 source ~/.vim/vimrcs/nerdtree/.vimrc              "<leader>d
 source ~/.vim/vimrcs/nerdcommenter/.vimrc         "<leader>/
 source ~/.vim/vimrcs/vim-buffergator/.vimrc       "<leader>b
+source ~/.vim/vimrcs/telescope.nvim/.vimrc        "<leader>f
 source ~/.vim/vimrcs/vim-numbertoggle/.vimrc      "empty
 source ~/.vim/vimrcs/vim-sneak/.vimrc             "empty
 source ~/.vim/vimrcs/vim-surround/.vimrc          "empty
@@ -84,6 +100,7 @@ source ~/.vim/vimrcs/coc.nvim/.vimrc              "<leader>g
 "source ~/.vim/vimrcs/YouCompleteMe/.vimrc        "<leader>g
 "source ~/.vim/vimrcs/ctrlp-py-matcher/.vimrc     "empty
 source ~/.vim/vimrcs/vim-polyglot/.vimrc          "empty
+source ~/.vim/vimrcs/swit_ch.vim/.vimrc          "empty
 
 " ----------------------------------------------------------------------------
 " Plugins End
@@ -174,6 +191,18 @@ inoremap <C-h> <C-o>h
 inoremap <C-j> <C-o>j
 inoremap <C-k> <C-o>k
 inoremap <C-l> <C-o>l
+
+"Let me easily switch between cpp and header files
+"Only works for files in the current directory but should be find for now
+"augroup jordan_c_group
+"  autocmd!
+"  "autocmd FileType cpp nnoremap <buffer> <leader>lc :e %:r.cpp<CR>
+"  "autocmd FileType cpp nnoremap <buffer> <leader>lt :e %:r_test.cpp<CR>
+"  "autocmd FileType cpp nnoremap <buffer> <leader>lh :e %:r.h<CR>
+"  autocmd FileType cpp nnoremap <buffer> <leader>lc :execute GetOtherFile('impl')<CR>
+"  autocmd FileType cpp nnoremap <buffer> <leader>lt :execute GetOtherFile('test')<CR>
+"  autocmd FileType cpp nnoremap <buffer> <leader>lh :execute GetOtherFile('header')<CR>
+"augroup END
 
 " Stuff
 "iabbrev <// </<C-X><C-O>

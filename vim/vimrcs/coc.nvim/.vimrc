@@ -34,7 +34,7 @@ endfunc
 "autocmd CursorHold * silent call CocActionAsync('highlight')
 command! -nargs=0 Format :call CocAction('format')1
 
-let g:coc_global_extensions = [ 'coc-jedi', 'coc-clangd', 'coc-go', 'coc-json', 'coc-vimlsp' ]
+let g:coc_global_extensions = [ 'coc-jedi', 'coc-clangd', 'coc-go', 'coc-json', 'coc-vimlsp']
 let g:coc_disable_startup_warning = 1
 
 "xmap <leader>f  <Plug>(coc-format-selected)
@@ -47,7 +47,7 @@ nmap <silent> <leader>gy <Plug>(coc-type-definition)
 nmap <silent> <leader>gi <Plug>(coc-implementation)
 nmap <silent> <leader>gr <Plug>(coc-references)
 nmap <silent> <leader>gn <Plug>(coc-rename)
-"nmap <silent> <leader>ge <Plug>(coc-diagnostic-next)
+nmap <silent> <leader>ge <Plug>(coc-diagnostic-next)
 "nmap <silent> <leader>ga <Plug>(coc-codeaction)
 "nmap <silent> <leader>gl <Plug>(coc-codeaction-line)
 "nmap <silent> <leader>gs <Plug>(coc-git-chunkinfo)
