@@ -21,8 +21,8 @@ call plug#begin('~/.vim/plugged')
 
 "Plug 'https://github.com/inkarkat/vim-ingo-library'
 "Plug 'https://github.com/kamykn/popup-menu.nvim'
-Plug '~/dev/lab/vim/jordan.vim'
-Plug '~/dev/lab/vim/jyup.vim'
+"Plug '~/dev/lab/vim/jordan.vim'
+"Plug '~/dev/lab/vim/jyup.vim'
 "Plug '~/dev/lab/vim/swit_ch.vim'
 
 " Good things
@@ -48,7 +48,8 @@ Plug 'https://github.com/vim-airline/vim-airline-themes'
 " Autocomplete
 "Plug 'https://github.com/ycm-core/YouCompleteMe'
 "Plug 'https://github.com/FelikZ/ctrlp-py-matcher'
-Plug 'https://github.com/neoclide/coc.nvim/'
+Plug 'https://github.com/neoclide/coc.nvim/', {'branch': 'release'}
+Plug 'https://github.com/github/copilot.vim', {'branch': 'release'}
 
 " Themes
 Plug 'https://github.com/tomasr/molokai'
@@ -59,6 +60,13 @@ Plug 'https://github.com/sheerun/vim-polyglot'
 "Plug 'https://github.com/tikhomirov/vim-glsl'
 "Plug 'https://github.com/rust-lang/rust.vim'
 "Plug 'https://github.com/tpope/vim-ragtag'
+
+" Telescope plugins
+" Only works for nvim so should be commented out if using normal vim
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
+Plug 'nvim-telescope/telescope.nvim'
 
 " Other plugins I've used before, but don't need right now
 "Plug 'https://github.com/google/vim-maktaba'
@@ -72,18 +80,8 @@ Plug 'https://github.com/sheerun/vim-polyglot'
 "Plug 'https://github.com/prabirshrestha/asyncomplete-lsp.vim'
 "Plug 'https://github.com/google/vim-codefmt'
 "Plug 'https://github.com/Chiel92/vim-autoformat'
-"
+
 call plug#end()
-
-if has('nvim')
-  call plug#begin('~/.vim/plugged')
-  Plug 'nvim-lua/plenary.nvim'
-  Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-  Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
-  Plug 'nvim-telescope/telescope.nvim'
-  call plug#end()
-endif
-
 
 " plugins vimrcs
 source ~/.vim/vimrcs/ctrlp/.vimrc                 "<leader>m
@@ -97,6 +95,7 @@ source ~/.vim/vimrcs/vim-surround/.vimrc          "empty
 source ~/.vim/vimrcs/vim-airline/.vimrc           "empty
 source ~/.vim/vimrcs/vim-airline-themes/.vimrc    "empty
 source ~/.vim/vimrcs/coc.nvim/.vimrc              "<leader>g
+source ~/.vim/vimrcs/copilot.vim/.vimrc          "<leader>g
 "source ~/.vim/vimrcs/YouCompleteMe/.vimrc        "<leader>g
 "source ~/.vim/vimrcs/ctrlp-py-matcher/.vimrc     "empty
 source ~/.vim/vimrcs/vim-polyglot/.vimrc          "empty

@@ -2,6 +2,8 @@ if !has('nvim')
   finish
 endif
 
+" ctrl+b, ctrl+p to scroll through options
+
 lua << EOF
 require('telescope').setup{
   defaults = {
