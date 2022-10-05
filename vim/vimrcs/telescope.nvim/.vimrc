@@ -39,6 +39,7 @@ EOF
 
 nnoremap <leader>F <cmd>Telescope<cr>
 nnoremap <leader>ff <cmd>Telescope find_files<cr>
+nnoremap <leader>p  <cmd>Telescope find_files<cr>
 nnoremap <leader>fg <cmd>Telescope live_grep<cr>
 nnoremap <leader>fG <cmd>Telescope grep_string<cr>
 nnoremap <leader>fb <cmd>Telescope buffers<cr>
