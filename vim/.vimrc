@@ -48,7 +48,7 @@ Plug 'https://github.com/vim-airline/vim-airline-themes'
 " Autocomplete
 "Plug 'https://github.com/ycm-core/YouCompleteMe'
 "Plug 'https://github.com/FelikZ/ctrlp-py-matcher'
-Plug 'https://github.com/neoclide/coc.nvim/', {'branch': 'release'}
+"Plug 'https://github.com/neoclide/coc.nvim/', {'branch': 'release'}
 "Plug 'https://github.com/github/copilot.vim', {'branch': 'release'}
 
 " Themes
@@ -63,10 +63,10 @@ Plug 'https://github.com/sheerun/vim-polyglot'
 
 " Telescope plugins
 " Only works for nvim so should be commented out if using normal vim
-Plug 'nvim-lua/plenary.nvim'
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
-Plug 'nvim-telescope/telescope.nvim'
+"Plug 'nvim-lua/plenary.nvim'
+"Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+"Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
+"Plug 'nvim-telescope/telescope.nvim'
 
 " Other plugins I've used before, but don't need right now
 "Plug 'https://github.com/google/vim-maktaba'

@@ -36,6 +36,7 @@ require('packer').startup(function(use)
   use 'jeetsukumaran/vim-buffergator'
   use 'jeffkreeftmeijer/vim-numbertoggle'
   use "folke/which-key.nvim"                -- tooltip to show key-mappings
+  use 'Raimondi/delimitMate'                -- bracket completion
   -- use 'https://github.com/Stymphalian/swit_ch.vim'
 
   -- Version Control
@@ -52,12 +53,13 @@ require('packer').startup(function(use)
 
   -- Autocomplete
   --use {'https://github.com/neoclide/coc.nvim/', branch='release'}
-  use 'williamboman/mason.nvim'             -- General package downloader
-  use 'williamboman/mason-lspconfig.nvim'   -- Mason LSP downloader
-  use 'neovim/nvim-lspconfig'               -- Neovim's LSP client configs
-  use 'hrsh7th/nvim-cmp'                    -- Autocompletion plugin
-  use 'hrsh7th/vim-vsnip'                   -- Autocomplete snippets 
-  use 'hrsh7th/cmp-nvim-lsp'                -- LSP source for nvim-cmp
+  use 'williamboman/mason.nvim'                      -- General package downloader
+  use 'williamboman/mason-lspconfig.nvim'            -- Mason LSP downloader
+  use 'neovim/nvim-lspconfig'                        -- Neovim's LSP client configs
+  use 'hrsh7th/nvim-cmp'                             -- Autocompletion plugin
+  use 'hrsh7th/vim-vsnip'                            -- Autocomplete snippets 
+  use 'hrsh7th/cmp-nvim-lsp'                         -- LSP source for nvim-cmp
+  use {'mhartington/formatter.nvim', commit="88aa6"} -- formatter 
 
   -- Themes
   use 'https://github.com/tomasr/molokai'
@@ -83,12 +85,6 @@ require('packer').startup(function(use)
   end
 end)
 
-require('lsp-config')             -- ~/.config/nvim/lua/lsp-config.lua
-require('lsp-cmp')                -- ~/.config/nvim/lua/lsp-cmp.lua
-require("which-key").setup{}
-require('material').setup()
-vim.cmd('colorscheme material')
---vim.lsp.set_log_level("debug")
 
 -- Plugin vimrcs
 vim.cmd('source ~/.vim/vimrcs/nerdtree/.vimrc')              --"<leader>d
@@ -98,9 +94,14 @@ vim.cmd('source ~/.vim/vimrcs/vim-numbertoggle/.vimrc')      --"empty
 vim.cmd('source ~/.vim/vimrcs/vim-sneak/.vimrc')             --"empty (default s <>)
 vim.cmd('source ~/.vim/vimrcs/vim-surround/.vimrc')          --"empty (default <cyd>s<>)
 vim.cmd('source ~/.vim/vimrcs/vim-airline/.vimrc')           --"empty
-vim.cmd('source ~/.vim/vimrcs/telescope.nvim/.vimrc')        --"<leader>f
---vim.cmd('source ~/.vim/vimrcs/ctrlp/.vimrc')                 --"<leader>m
---vim.cmd('source ~/.vim/vimrcs/coc.nvim/.vimrc')              --"<leader>g
+vim.cmd('source ~/.vim/vimrcs/telescope.nvim/.vimrc')        --"<leader>p
+require("which-key").setup()
+require('material').setup()
+require('lsp-config')             -- ~/.config/nvim/lua/lsp-config.lua, <leader>l
+require('lsp-cmp')                -- ~/.config/nvim/lua/lsp-cmp.lua     
+require('delimitMate')            -- ~/.config/nvim/lua/delimitMate.lua
+require('jj/run-command')         -- ~/.config/nvim/lua/jj/run-command.lua
+--require('jj/formatter')           -- ~/.config/nvim/lua/jj/formatter.lua 
 
 
 -- ----------------------------------------------------------------------------
@@ -155,6 +156,8 @@ vim.o.foldenable=false
 vim.o.foldmethod='indent'    -- " fold based on indent
 vim.o.foldnestmax=2          -- " helps make sure methods inside a class aren't folded
 
+vim.cmd('colorscheme material')
+
 
 function map(mode, shortcut, command)
   vim.api.nvim_set_keymap(mode, shortcut, command, { noremap = true, silent = true })
@@ -195,15 +198,16 @@ end
 -- "imap( <C-Space> <C-[>  "Ctrl+[ is the ESC key, we map it to CTRL + space
 -- "imap( <C-Space> <C-x><C-o>  "Remap CTRL-space to omnicomplete
 -- "imap( <C-@> <C-Space>|      "Remap <NUL> char to <CTRL-space>
-imap('jk', '<C-[>|')    -- Map "j + k" to ESC in insert-mode
-vmap('jk', '<C-[>|')    -- "Map "j + k" to ESC in visual mode
-nmap('<C-J>', '<C-E>|') --"Map "CTRL + j" to line scrolling down in normal mode
-nmap('<C-K>', '<C-Y>|') --"Map "Ctrl + k" to line scrolling up in normal mode
-nmap('HH', 'H|')        --"Map "H + H" to go to the top of the visible screen
-nmap('MM', 'M|')        --"Map "M + M" to go to the middle of the visible screen
-nmap('LL', 'L|')        --"Map "L + L" to go to the bottom of the visible scren
+imap('jk', '<C-[>')    -- Map "j + k" to ESC in insert-mode
+vmap('jk', '<C-[>')    -- "Map "j + k" to ESC in visual mode
+nmap('<C-J>', '<C-E>') --"Map "CTRL + j" to line scrolling down in normal mode
+nmap('<C-K>', '<C-Y>') --"Map "Ctrl + k" to line scrolling up in normal mode
+nmap('HH', 'H')        --"Map "H + H" to go to the top of the visible screen
+nmap('MM', 'M')        --"Map "M + M" to go to the middle of the visible screen
+nmap('LL', 'L')        --"Map "L + L" to go to the bottom of the visible scren
 nmap('H', '^')          --"Map "H" to go the first character of the line
 nmap('L', 'g_')         --"Map "L" to go the last charcter of the line
+nmap('Y', 'mp^Y`p')     --Map "Y" to copy the full line to paste buffer
 --nmap('L', 'g_')       --"Map "L" to go the last charcter of the line
 
 --"In insert allows you to use hjkl to move around by pressing <CTRL-blah>
@@ -217,14 +221,13 @@ imap('<C-l>', '<C-o>l')
 
 -- Use Esc to quit the builtin terminal
 tmap("<Esc>", [[<c-\><c-n>]])
--- Turn the word under cursor to upper case
-nmap('<leader>mu', '<Esc>viwUea')
--- Turn the current word into title case
-nmap('<leader>mt', '<Esc>b~lea')
--- Saves the file if modified and quit
-vim.keymap.set("n", "<leader>q", "<cmd>x<cr>", { silent = true, desc = "quit current window" })
--- Quit all opened buffers
-vim.keymap.set("n", "<leader>Q", "<cmd>qa!<cr>", { silent = true, desc = "quit nvim" })
+-- <leader>m
+nmap('<leader>mu', '<Esc>viwUea')  -- Turn the word under cursor to upper case
+nmap('<leader>mt', '<Esc>b~lea')   -- Turn the current word into title case
+vmap('<leader>mc', '"+y')          -- Copy to system clipboard
+nmap("<leader>mq", "<cmd>x<cr>")   -- Saves the file if modified and quit
+nmap("<leader>mQ", "<cmd>qa!<cr>") -- Quit all opened bufferss
+nmap("<leader>.", "<Esc><cmd>w<cr>") -- Quickly save the file
 
 -- "Let me EASILY switch between cpp and header files
 -- "Only works for files in the current directory but should be find for now

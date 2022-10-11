@@ -32,10 +32,10 @@ cmp.setup {
     ["<C-f>"] = cmp.mapping.scroll_docs(4),
   },
   sources = {
-    { name = "nvim_lsp" }, -- For nvim-lsp
-    --{ name = "ultisnips" }, -- For ultisnips user.
-    { name = "path" }, -- for path completion
-    { name = "buffer", keyword_length = 2 }, -- for buffer word completion
+    { name = "nvim_lsp", keyword_length = 2 }, -- For nvim-lsp
+    --{ name = "ultisnips" },                 -- For ultisnips user.
+    { name = "path" },                        -- for path completion
+    { name = "buffer", keyword_length = 2 },  -- for buffer word completion
     { name = "omni" },
     --{ name = "emoji", insert = true }, -- emoji completion
   },
