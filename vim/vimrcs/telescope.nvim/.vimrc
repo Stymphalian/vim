@@ -17,6 +17,18 @@ require('telescope').setup{
         ["<C-K>"] = require('telescope.actions').move_selection_previous,
       },
     },
+    preview = false,
+    vimgrep_arguments = {
+        "rg",
+        "--color=never",
+        "--no-heading",
+        "--with-filename",
+        "--line-number",
+        "--column",
+        "--smart-case",
+        "--ignore-file=/home/jyu/.ignore"
+    }
+
   },
   pickers = {
     -- Default configuration for builtin pickers goes here:

@@ -7,7 +7,8 @@ local function setup_servers()
         "sumneko_lua",
         "rust_analyzer",
         "pyright",
-        "jsonls"
+        "jsonls",
+        "intelephense"
       }
   })
 
@@ -126,6 +127,15 @@ local function setup_servers()
     capabilities = capabilities,
     settings = {
       jsonls = {}
+    }
+  }
+
+  require('lspconfig')['intelephense'].setup {
+    on_attach = on_attach,
+    flags = lsp_flags,
+    capabilities = capabilities,
+    settings = {
+      intelephense = {}
     }
   }
 

@@ -77,6 +77,7 @@ require('packer').startup(function(use)
   use {'nvim-treesitter/nvim-treesitter', run=':TSUpdate'}
   use {'nvim-telescope/telescope-fzf-native.nvim', run='make' }
   use 'nvim-telescope/telescope.nvim'
+  use 'mileszs/ack.vim'
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
@@ -94,13 +95,14 @@ vim.cmd('source ~/.vim/vimrcs/vim-numbertoggle/.vimrc')      --"empty
 vim.cmd('source ~/.vim/vimrcs/vim-sneak/.vimrc')             --"empty (default s <>)
 vim.cmd('source ~/.vim/vimrcs/vim-surround/.vimrc')          --"empty (default <cyd>s<>)
 vim.cmd('source ~/.vim/vimrcs/vim-airline/.vimrc')           --"empty
-vim.cmd('source ~/.vim/vimrcs/telescope.nvim/.vimrc')        --"<leader>p
+--vim.cmd('source ~/.vim/vimrcs/telescope.nvim/.vimrc')        --"<leader>p
 require("which-key").setup()
 --require('material').setup()
 require('lsp-config')             -- ~/.config/nvim/lua/lsp-config.lua, <leader>l
 require('lsp-cmp')                -- ~/.config/nvim/lua/lsp-cmp.lua     
 require('delimitMate')            -- ~/.config/nvim/lua/delimitMate.lua
 require('jj/run-command')         -- ~/.config/nvim/lua/jj/run-command.lua
+require('coursehero')             -- ~/.config/nvim/lua/coursehero.lua  -- <leader>c
 --require('jj/formatter')           -- ~/.config/nvim/lua/jj/formatter.lua 
 
 
@@ -227,6 +229,7 @@ nmap('<leader>mt', '<Esc>b~lea')   -- Turn the current word into title case
 vmap('<leader>mc', '"+y')          -- Copy to system clipboard
 nmap("<leader>mq", "<cmd>x<cr>")   -- Saves the file if modified and quit
 nmap("<leader>mQ", "<cmd>qa!<cr>") -- Quit all opened bufferss
+nmap("<leader>md", ":Ack! <C-r>=expand('<cword>')<CR><CR>") -- Quickly save the file
 nmap("<leader>.", "<Esc><cmd>w<cr>") -- Quickly save the file
 
 -- "Let me EASILY switch between cpp and header files
