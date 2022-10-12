@@ -31,7 +31,7 @@ Plug 'https://github.com/scrooloose/nerdtree'
 Plug 'https://github.com/scrooloose/nerdcommenter'
 Plug 'https://github.com/jeetsukumaran/vim-buffergator'
 Plug 'https://github.com/jeffkreeftmeijer/vim-numbertoggle'
-Plug 'https://github.com/Stymphalian/swit_ch.vim'
+"Plug 'https://github.com/Stymphalian/swit_ch.vim'
 
 " Version Control
 "Plug 'https://github.com/tpope/vim-fugitive'
@@ -48,8 +48,8 @@ Plug 'https://github.com/vim-airline/vim-airline-themes'
 " Autocomplete
 "Plug 'https://github.com/ycm-core/YouCompleteMe'
 "Plug 'https://github.com/FelikZ/ctrlp-py-matcher'
-Plug 'https://github.com/neoclide/coc.nvim/', {'branch': 'release'}
-Plug 'https://github.com/github/copilot.vim', {'branch': 'release'}
+"Plug 'https://github.com/neoclide/coc.nvim/', {'branch': 'release'}
+"Plug 'https://github.com/github/copilot.vim', {'branch': 'release'}
 
 " Themes
 Plug 'https://github.com/tomasr/molokai'
@@ -63,10 +63,10 @@ Plug 'https://github.com/sheerun/vim-polyglot'
 
 " Telescope plugins
 " Only works for nvim so should be commented out if using normal vim
-Plug 'nvim-lua/plenary.nvim'
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
-Plug 'nvim-telescope/telescope.nvim'
+"Plug 'nvim-lua/plenary.nvim'
+"Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+"Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
+"Plug 'nvim-telescope/telescope.nvim'
 
 " Other plugins I've used before, but don't need right now
 "Plug 'https://github.com/google/vim-maktaba'
@@ -88,18 +88,21 @@ source ~/.vim/vimrcs/ctrlp/.vimrc                 "<leader>m
 source ~/.vim/vimrcs/nerdtree/.vimrc              "<leader>d
 source ~/.vim/vimrcs/nerdcommenter/.vimrc         "<leader>/
 source ~/.vim/vimrcs/vim-buffergator/.vimrc       "<leader>b
-source ~/.vim/vimrcs/telescope.nvim/.vimrc        "<leader>f
 source ~/.vim/vimrcs/vim-numbertoggle/.vimrc      "empty
-source ~/.vim/vimrcs/vim-sneak/.vimrc             "empty
-source ~/.vim/vimrcs/vim-surround/.vimrc          "empty
+source ~/.vim/vimrcs/vim-sneak/.vimrc             "empty (default s <>)
+source ~/.vim/vimrcs/vim-surround/.vimrc          "empty (default <cyd>s<>)
 source ~/.vim/vimrcs/vim-airline/.vimrc           "empty
 source ~/.vim/vimrcs/vim-airline-themes/.vimrc    "empty
-source ~/.vim/vimrcs/coc.nvim/.vimrc              "<leader>g
-source ~/.vim/vimrcs/copilot.vim/.vimrc          "<leader>g
+"source ~/.vim/vimrcs/copilot.vim/.vimrc          "<leader>g
 "source ~/.vim/vimrcs/YouCompleteMe/.vimrc        "<leader>g
 "source ~/.vim/vimrcs/ctrlp-py-matcher/.vimrc     "empty
 source ~/.vim/vimrcs/vim-polyglot/.vimrc          "empty
-source ~/.vim/vimrcs/swit_ch.vim/.vimrc          "empty
+"source ~/.vim/vimrcs/swit_ch.vim/.vimrc          "empty
+
+if has('nvim')
+  source ~/.vim/vimrcs/telescope.nvim/.vimrc        "<leader>f
+  source ~/.vim/vimrcs/coc.nvim/.vimrc              "<leader>g
+endif
 
 " ----------------------------------------------------------------------------
 " Plugins End
@@ -154,6 +157,9 @@ set mouse=a                "Enable the mouse"
 let loaded_matchparen=1  "Disable '{' highlight matching
 
 set lazyredraw      "Faster macros appliction
+
+"set foldmethod=indent  " fold based on indent
+"set foldnestmax=2      " helps make sure methods inside a class aren't folded
 
 set pastetoggle=<leader>sp
 
