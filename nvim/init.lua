@@ -62,7 +62,8 @@ require('packer').startup(function(use)
   use {'mhartington/formatter.nvim', commit="88aa6"} -- formatter 
 
   -- Themes
-  use 'https://github.com/tomasr/molokai'
+  use 'tomasr/molokai'
+  use 'rafi/awesome-vim-colorschemes'
   use 'marko-cerovac/material.nvim'
   --use 'https://github.com/sickill/vim-monokai'
 
@@ -108,13 +109,13 @@ require('jj/run-command')         -- ~/.config/nvim/lua/jj/run-command.lua
 -- Personal settings
 -- ----------------------------------------------------------------------------
 vim.o.hidden = true       --When a buffer is abandoned then unload the buffer
-vim.o.autoread  = true    --auto-reload the file if it is detectedd as changed
+vim.o.autoread = true    --auto-reload the file if it is detectedd as changed
 --vim.o.autochdir         -- change to the directoy which contains the open file
 
 vim.o.smarttab = true    -- "when tab is pressed use tabstop number of spaces
-vim.o.tabstop=2          -- "number of spaces a tab in the file counts for
-vim.o.shiftwidth=2       -- "number of spaces to use for each auto-indent
-vim.o.expandtab  = true  -- "expand a tab characters into the space chars
+vim.o.tabstop = 2          -- "number of spaces a tab in the file counts for
+vim.o.shiftwidth = 2       -- "number of spaces to use for each auto-indent
+vim.o.expandtab = true  -- "expand a tab characters into the space chars
 vim.o.autoindent = true  -- "automatically indent when starting a new line
 vim.o.smartindent = true -- "do c-like indenting when possible
 vim.o.wrap = false       -- "don't wrap the lines if it is longer than the split
@@ -138,7 +139,7 @@ vim.o.ruler=true               -- "show the line and columns number in the botto
 vim.o.colorcolumn="80,100"     -- "color column 80 and column 100
 vim.o.number=true              -- "print the line number in the left-margin
 vim.o.numberwidth=2            -- "number of columns to use to dispaly the number
-vim.o.cursorline=true          -- "highlight the linet he cursor is currently on
+vim.o.cursorline=true          -- "highlight the line he cursor is currently on
 vim.o.signcolumn="yes"
 
 vim.o.showcmd=true         -- "show partial-comands in the bottom bar
@@ -152,9 +153,14 @@ vim.o.mouse="a"              -- "Enable the mouse"
 --let loaded_matchparen=1    -- "Disable '{' highlight matching
 vim.o.lazyredraw=true        -- "Faster macros appliction
 
-vim.o.foldenable=false
-vim.o.foldmethod='indent'    -- " fold based on indent
+vim.o.foldenable=true
+vim.o.foldmethod='manual'    -- " fold based on indent
 vim.o.foldnestmax=2          -- " helps make sure methods inside a class aren't folded
+-- save a view so that we can keep folds loaded upon reopening vim
+vim.cmd([[
+  autocmd BufWinLeave *.* mkview
+  autocmd BufWinEnter *.* silent! loadview
+]])
 
 vim.cmd('colorscheme material')
 

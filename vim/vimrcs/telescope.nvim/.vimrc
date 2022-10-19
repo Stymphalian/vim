@@ -17,6 +17,17 @@ require('telescope').setup{
         ["<C-K>"] = require('telescope.actions').move_selection_previous,
       },
     },
+    preview = false,
+    -- vimgrep_arguments = {
+    --   "rg",
+    --   "--color=never",
+    --   "--no-heading",
+    --   "--with-filename",
+    --   "--line-number",
+    --   "--column",
+    --   "--smart-case",
+    --   -- "--ignore_file=~/.ignore",
+    -- }
   },
   pickers = {
     -- Default configuration for builtin pickers goes here:
@@ -37,9 +48,14 @@ require('telescope').setup{
 }
 EOF
 
-nnoremap <leader>p  <cmd>Telescope find_files<cr>
 nnoremap <leader>P <cmd>Telescope<cr>
+nnoremap <leader>p  <cmd>Telescope find_files<cr>
+
 nnoremap <leader>pa <cmd>Telescope help_tags<cr>
 nnoremap <leader>ps <cmd>Telescope buffers<cr>
 nnoremap <leader>pd <cmd>Telescope grep_string<cr>
 nnoremap <leader>pf <cmd>Telescope live_grep<cr>
+
+nnoremap <leader>pr <cmd>Telescope resume<cr>
+nnoremap <leader>pe <cmd>Telescope git_status<cr>
+"nnoremap <leader>pw <cmd>Telescope oldfiles<cr>
