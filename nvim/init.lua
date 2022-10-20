@@ -36,7 +36,6 @@ require('packer').startup(function(use)
   use 'jeetsukumaran/vim-buffergator'
   use 'jeffkreeftmeijer/vim-numbertoggle'
   use "folke/which-key.nvim"                -- tooltip to show key-mappings
-  use 'Raimondi/delimitMate'                -- bracket completion
   -- use 'https://github.com/Stymphalian/swit_ch.vim'
 
   -- Version Control
@@ -58,12 +57,14 @@ require('packer').startup(function(use)
   use 'williamboman/mason-lspconfig.nvim'            -- Mason LSP downloader
   use 'neovim/nvim-lspconfig'                        -- Neovim's LSP client configs
   use 'hrsh7th/nvim-cmp'                             -- Autocompletion plugin
-  use 'hrsh7th/vim-vsnip'                            -- Autocomplete snippets 
+  use 'hrsh7th/vim-vsnip'                            -- Autocomplete snippets
   use 'hrsh7th/cmp-nvim-lsp'                         -- LSP source for nvim-cmp
-  use {'mhartington/formatter.nvim', commit="88aa6"} -- formatter 
+  use {'mhartington/formatter.nvim', commit="88aa6"} -- formatter
+  use 'Raimondi/delimitMate'                         -- bracket completion
 
   -- Themes
-  use 'https://github.com/tomasr/molokai'
+  use 'tomasr/molokai'
+  use 'rafi/awesome-vim-colorschemes'
   use 'marko-cerovac/material.nvim'
   use 'https://github.com/sickill/vim-monokai'
   use 'rafi/awesome-vim-colorschemes'
@@ -107,24 +108,25 @@ vim.cmd 'colorscheme monokai'
 --require('material').setup()
 
 require('lsp-config')             -- ~/.config/nvim/lua/lsp-config.lua, <leader>l
-require('lsp-cmp')                -- ~/.config/nvim/lua/lsp-cmp.lua     
+require('lsp-cmp')                -- ~/.config/nvim/lua/lsp-cmp.lua
 require('delimitMate')            -- ~/.config/nvim/lua/delimitMate.lua
 require('jj/run-command')         -- ~/.config/nvim/lua/jj/run-command.lua
-require('coursehero')             -- ~/.config/nvim/lua/coursehero.lua  -- <leader>c
---require('jj/formatter')           -- ~/.config/nvim/lua/jj/formatter.lua 
+require('jj/ctrl_d')              -- ~/.config/nvim/lua/jj/ctrl_d.lua
+require('coursehero')             -- ~/.config/nvim/lua/coursehero.lua -- <leader>c
+--require('jj/formatter')         -- ~/.config/nvim/lua/jj/formatter.lua
 
 
 -- ----------------------------------------------------------------------------
 -- Personal settings
 -- ----------------------------------------------------------------------------
 vim.o.hidden = true       --When a buffer is abandoned then unload the buffer
-vim.o.autoread  = true    --auto-reload the file if it is detectedd as changed
+vim.o.autoread = true    --auto-reload the file if it is detectedd as changed
 --vim.o.autochdir         -- change to the directoy which contains the open file
 
 vim.o.smarttab = true    -- "when tab is pressed use tabstop number of spaces
-vim.o.tabstop=2          -- "number of spaces a tab in the file counts for
-vim.o.shiftwidth=2       -- "number of spaces to use for each auto-indent
-vim.o.expandtab  = true  -- "expand a tab characters into the space chars
+vim.o.tabstop = 2          -- "number of spaces a tab in the file counts for
+vim.o.shiftwidth = 2       -- "number of spaces to use for each auto-indent
+vim.o.expandtab = true  -- "expand a tab characters into the space chars
 vim.o.autoindent = true  -- "automatically indent when starting a new line
 vim.o.smartindent = true -- "do c-like indenting when possible
 vim.o.wrap = false       -- "don't wrap the lines if it is longer than the split
@@ -148,7 +150,7 @@ vim.o.ruler=true               -- "show the line and columns number in the botto
 vim.o.colorcolumn="80,100"     -- "color column 80 and column 100
 vim.o.number=true              -- "print the line number in the left-margin
 vim.o.numberwidth=2            -- "number of columns to use to dispaly the number
-vim.o.cursorline=true          -- "highlight the linet he cursor is currently on
+vim.o.cursorline=true          -- "highlight the line he cursor is currently on
 vim.o.signcolumn="yes"
 
 vim.o.showcmd=true         -- "show partial-comands in the bottom bar
@@ -162,33 +164,40 @@ vim.o.mouse="a"              -- "Enable the mouse"
 --let loaded_matchparen=1    -- "Disable '{' highlight matching
 vim.o.lazyredraw=true        -- "Faster macros appliction
 
-vim.o.foldenable=false
-vim.o.foldmethod='indent'    -- " fold based on indent
+vim.o.foldenable=true
+vim.o.foldmethod='manual'    -- " fold based on indent
 vim.o.foldnestmax=2          -- " helps make sure methods inside a class aren't folded
+-- save a view so that we can keep folds loaded upon reopening vim
+vim.cmd([[
+  autocmd BufWinLeave *.* mkview
+  autocmd BufWinEnter *.* silent! loadview
+]])
 
 
+-- vim.cmd('colorscheme materialbox')
 
-function map(mode, shortcut, command)
+
+local function map(mode, shortcut, command)
   vim.api.nvim_set_keymap(mode, shortcut, command, { noremap = true, silent = true })
 end
 
-function nmap(shortcut, command)
+local function nmap(shortcut, command)
   map('n', shortcut, command)
 end
 
-function imap(shortcut, command)
+local function imap(shortcut, command)
   map('i', shortcut, command)
 end
 
-function vmap(shortcut, command)
+local function vmap(shortcut, command)
   map('v', shortcut, command)
 end
 
-function cmap(shortcut, command)
+local function cmap(shortcut, command)
   map('c', shortcut, command)
 end
 
-function tmap(shortcut, command)
+local function tmap(shortcut, command)
   map('t', shortcut, command)
 end
 
@@ -208,7 +217,7 @@ end
 -- "imap( <C-Space> <C-x><C-o>  "Remap CTRL-space to omnicomplete
 -- "imap( <C-@> <C-Space>|      "Remap <NUL> char to <CTRL-space>
 imap('jk', '<C-[>')    -- Map "j + k" to ESC in insert-mode
-vmap('jk', '<C-[>')    -- "Map "j + k" to ESC in visual mode
+--vmap('jk', '<C-[>')    -- "Map "j + k" to ESC in visual mode
 nmap('<C-J>', '<C-E>') --"Map "CTRL + j" to line scrolling down in normal mode
 nmap('<C-K>', '<C-Y>') --"Map "Ctrl + k" to line scrolling up in normal mode
 nmap('HH', 'H')        --"Map "H + H" to go to the top of the visible screen
@@ -250,15 +259,33 @@ nmap("<leader>.", "<Esc><cmd>w<cr>") -- Quickly save the file
 -- "  autocmd FileType cpp nnoremap <buffer> <leader>lt :execute GetOtherFile('test')<CR>
 -- "  autocmd FileType cpp nnoremap <buffer> <leader>lh :execute GetOtherFile('header')<CR>
 -- "augroup END
--- 
+--
 -- " Stuff
 -- "iabbrev <// </<C-X><C-O>
 -- ccl - close quickfix window
 -- <c-w><c-z> - close preview window
 -- <c-w> z - close preview window
+--
+-- Simulating vscode/sublime ctrl-d behavior in Vim
+--    visual mode select the text you want to search
+--    yank the text
+--    in search mode <C-r>"  (ctrl_r + ") to output the last yanked text
+--    click enter to search
+--    now the text is in your search, so you can use n,N to navigate
+--    if you want to make edits and apply them to every instance
+--    create a macro (qa), make the edit in once instance
+--    use n (or N) to search for the next instance
+--    type @a to apply the macro
+--    For subsequent ones, use @@ to apply the last macro
+--
+-- To search for just the word surround the search term with \< "word" \>
+--
+-- quickfix window
+-- preview window
+--
 
--- "nnoremap <leader>ve  :e ~/.vim/.vimrc<cr>Gj|  "Open the vimrc in a new vertical 
-nmap('<leader>ve', ':e ~/.config/nvim/init.lua<cr>')  -- "Open the vimrc in a new vertical 
+-- "nnoremap <leader>ve  :e ~/.vim/.vimrc<cr>Gj|  "Open the vimrc in a new vertical
+nmap('<leader>ve', ':e ~/.config/nvim/init.lua<cr>')  -- "Open the vimrc in a new vertical
 nmap('<leader>vr', ':luafile $MYVIMRC<cr>| :e<cr>')  -- "Source the vimrc into the session
-nmap('<leader>vee',':e ~/.vim/.vimrc<cr>|')  -- "Open the vimrc in a new vertical 
+nmap('<leader>vee',':e ~/.vim/.vimrc<cr>|')  -- "Open the vimrc in a new vertical
 nmap('<leader>vrr',':source $MYVIMRC<cr>|')  -- "Source the vimrc into the session

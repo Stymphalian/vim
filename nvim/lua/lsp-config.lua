@@ -8,7 +8,8 @@ local function setup_servers()
         "rust_analyzer",
         "pyright",
         "jsonls",
-        "intelephense"
+        "intelephense",
+        "tsserver"
       }
   })
 
@@ -136,6 +137,15 @@ local function setup_servers()
     capabilities = capabilities,
     settings = {
       intelephense = {}
+    }
+  }
+
+  require('lspconfig')['tsserver'].setup {
+    on_attach = on_attach,
+    flags = lsp_flags,
+    capabilities = capabilities,
+    settings = {
+      tsserver = {}
     }
   }
 
