@@ -46,6 +46,7 @@ require('packer').startup(function(use)
   -- Easy movement
   use 'justinmk/vim-sneak'
   use 'tpope/vim-surround'
+  use 'psliwka/vim-smoothie'  -- smooth movement
 
   -- Status-line
   use 'vim-airline/vim-airline'
@@ -65,6 +66,7 @@ require('packer').startup(function(use)
   use 'https://github.com/tomasr/molokai'
   use 'marko-cerovac/material.nvim'
   use 'https://github.com/sickill/vim-monokai'
+  use 'rafi/awesome-vim-colorschemes'
 
   -- Language Syntax
   use 'sheerun/vim-polyglot'
@@ -97,7 +99,13 @@ vim.cmd('source ~/.vim/vimrcs/vim-surround/.vimrc')          --"empty (default <
 vim.cmd('source ~/.vim/vimrcs/vim-airline/.vimrc')           --"empty
 --vim.cmd('source ~/.vim/vimrcs/telescope.nvim/.vimrc')        --"<leader>p
 require("which-key").setup()
+
+--vim.cmd 'colorscheme oceanic_material'
+vim.cmd 'colorscheme monokai'
+--vim.cmd('set termguicolors')
+--vim.o.termguicolors = true;
 --require('material').setup()
+
 require('lsp-config')             -- ~/.config/nvim/lua/lsp-config.lua, <leader>l
 require('lsp-cmp')                -- ~/.config/nvim/lua/lsp-cmp.lua     
 require('delimitMate')            -- ~/.config/nvim/lua/delimitMate.lua
@@ -158,7 +166,6 @@ vim.o.foldenable=false
 vim.o.foldmethod='indent'    -- " fold based on indent
 vim.o.foldnestmax=2          -- " helps make sure methods inside a class aren't folded
 
-vim.cmd('colorscheme monokai')
 
 
 function map(mode, shortcut, command)
