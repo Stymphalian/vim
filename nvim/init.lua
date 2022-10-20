@@ -36,7 +36,6 @@ require('packer').startup(function(use)
   use 'jeetsukumaran/vim-buffergator'
   use 'jeffkreeftmeijer/vim-numbertoggle'
   use "folke/which-key.nvim"                -- tooltip to show key-mappings
-  use 'Raimondi/delimitMate'                -- bracket completion
   -- use 'https://github.com/Stymphalian/swit_ch.vim'
 
   -- Version Control
@@ -60,6 +59,7 @@ require('packer').startup(function(use)
   use 'hrsh7th/vim-vsnip'                            -- Autocomplete snippets 
   use 'hrsh7th/cmp-nvim-lsp'                         -- LSP source for nvim-cmp
   use {'mhartington/formatter.nvim', commit="88aa6"} -- formatter 
+  use 'Raimondi/delimitMate'                         -- bracket completion
 
   -- Themes
   use 'tomasr/molokai'
@@ -102,7 +102,9 @@ require('lsp-config')             -- ~/.config/nvim/lua/lsp-config.lua, <leader>
 require('lsp-cmp')                -- ~/.config/nvim/lua/lsp-cmp.lua     
 require('delimitMate')            -- ~/.config/nvim/lua/delimitMate.lua
 require('jj/run-command')         -- ~/.config/nvim/lua/jj/run-command.lua
---require('jj/formatter')           -- ~/.config/nvim/lua/jj/formatter.lua 
+require('jj/ctrl_d')              -- ~/.config/nvim/lua/jj/ctrl_d.lua
+require('coursehero')             -- ~/.config/nvim/lua/coursehero.lua
+--require('jj/formatter')         -- ~/.config/nvim/lua/jj/formatter.lua 
 
 
 -- ----------------------------------------------------------------------------
@@ -162,30 +164,30 @@ vim.cmd([[
   autocmd BufWinEnter *.* silent! loadview
 ]])
 
-vim.cmd('colorscheme material')
+vim.cmd('colorscheme materialbox')
 
 
-function map(mode, shortcut, command)
+local function map(mode, shortcut, command)
   vim.api.nvim_set_keymap(mode, shortcut, command, { noremap = true, silent = true })
 end
 
-function nmap(shortcut, command)
+local function nmap(shortcut, command)
   map('n', shortcut, command)
 end
 
-function imap(shortcut, command)
+local function imap(shortcut, command)
   map('i', shortcut, command)
 end
 
-function vmap(shortcut, command)
+local function vmap(shortcut, command)
   map('v', shortcut, command)
 end
 
-function cmap(shortcut, command)
+local function cmap(shortcut, command)
   map('c', shortcut, command)
 end
 
-function tmap(shortcut, command)
+local function tmap(shortcut, command)
   map('t', shortcut, command)
 end
 
@@ -205,7 +207,7 @@ end
 -- "imap( <C-Space> <C-x><C-o>  "Remap CTRL-space to omnicomplete
 -- "imap( <C-@> <C-Space>|      "Remap <NUL> char to <CTRL-space>
 imap('jk', '<C-[>')    -- Map "j + k" to ESC in insert-mode
-vmap('jk', '<C-[>')    -- "Map "j + k" to ESC in visual mode
+--vmap('jk', '<C-[>')    -- "Map "j + k" to ESC in visual mode
 nmap('<C-J>', '<C-E>') --"Map "CTRL + j" to line scrolling down in normal mode
 nmap('<C-K>', '<C-Y>') --"Map "Ctrl + k" to line scrolling up in normal mode
 nmap('HH', 'H')        --"Map "H + H" to go to the top of the visible screen
@@ -252,6 +254,24 @@ nmap("<leader>.", "<Esc><cmd>w<cr>") -- Quickly save the file
 -- ccl - close quickfix window
 -- <c-w><c-z> - close preview window
 -- <c-w> z - close preview window
+--
+-- Simulating vscode/sublime ctrl-d behavior in Vim
+--    visual mode select the text you want to search
+--    yank the text
+--    in search mode <C-r>"  (ctrl_r + ") to output the last yanked text
+--    click enter to search
+--    now the text is in your search, so you can use n,N to navigate
+--    if you want to make edits and apply them to every instance
+--    create a macro (qa), make the edit in once instance
+--    use n (or N) to search for the next instance
+--    type @a to apply the macro
+--    For subsequent ones, use @@ to apply the last macro
+--
+-- To search for just the word surround the search term with \< "word" \>
+--
+-- quickfix window
+-- preview window
+--
 
 -- "nnoremap <leader>ve  :e ~/.vim/.vimrc<cr>Gj|  "Open the vimrc in a new vertical 
 nmap('<leader>ve', ':e ~/.config/nvim/init.lua<cr>')  -- "Open the vimrc in a new vertical 
