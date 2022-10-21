@@ -52,14 +52,14 @@ require('packer').startup(function(use)
 
   -- Autocomplete
   --use {'https://github.com/neoclide/coc.nvim/', branch='release'}
-  use 'williamboman/mason.nvim'                      -- General package downloader
-  use 'williamboman/mason-lspconfig.nvim'            -- Mason LSP downloader
-  use 'neovim/nvim-lspconfig'                        -- Neovim's LSP client configs
-  use 'hrsh7th/nvim-cmp'                             -- Autocompletion plugin
-  use 'hrsh7th/vim-vsnip'                            -- Autocomplete snippets 
-  use 'hrsh7th/cmp-nvim-lsp'                         -- LSP source for nvim-cmp
-  use {'mhartington/formatter.nvim', commit="88aa6"} -- formatter 
-  use 'Raimondi/delimitMate'                         -- bracket completion
+  use 'williamboman/mason.nvim'                                 -- General package downloader
+  use 'williamboman/mason-lspconfig.nvim'                       -- Mason LSP downloader
+  use 'neovim/nvim-lspconfig'                                   -- Neovim's LSP client configs
+  use {'hrsh7th/nvim-cmp', commit="e94d34893"}                  -- Autocompletion plugin
+  use {'hrsh7th/vim-vsnip', commit="7de8a71e5"}                 -- Autocomplete snippets 
+  use {'hrsh7th/cmp-nvim-lsp', commit="3cf38d9c95"}             -- LSP source for nvim-cmp
+  use {'mhartington/formatter.nvim', commit="88aa6"}            -- formatter 
+  use 'Raimondi/delimitMate'                                    -- bracket completion
 
   -- Themes
   use 'tomasr/molokai'
@@ -78,6 +78,8 @@ require('packer').startup(function(use)
   use {'nvim-treesitter/nvim-treesitter', run=':TSUpdate'}
   use {'nvim-telescope/telescope-fzf-native.nvim', run='make' }
   use 'nvim-telescope/telescope.nvim'
+  use {'junegunn/fzf', run = ":call fzf#install()"}
+  use 'junegunn/fzf.vim'
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
@@ -98,12 +100,11 @@ vim.cmd('source ~/.vim/vimrcs/vim-airline/.vimrc')           --"empty
 vim.cmd('source ~/.vim/vimrcs/telescope.nvim/.vimrc')        --"<leader>p
 require("which-key").setup()
 require('material').setup()
-require('lsp-config')             -- ~/.config/nvim/lua/lsp-config.lua, <leader>l
+require('lsp-config')             -- ~/.config/nvim/lua/lsp-config.lua,    -- <leader>l
 require('lsp-cmp')                -- ~/.config/nvim/lua/lsp-cmp.lua     
 require('delimitMate')            -- ~/.config/nvim/lua/delimitMate.lua
-require('jj/run-command')         -- ~/.config/nvim/lua/jj/run-command.lua
-require('jj/ctrl_d')              -- ~/.config/nvim/lua/jj/ctrl_d.lua
-require('coursehero')             -- ~/.config/nvim/lua/coursehero.lua
+require('jj/run-command')         -- ~/.config/nvim/lua/jj/run-command.lua -- <leader>m
+require('jj/ctrl_d')              -- ~/.config/nvim/lua/jj/ctrl_d.lua      -- <leader>m
 --require('jj/formatter')         -- ~/.config/nvim/lua/jj/formatter.lua 
 
 
