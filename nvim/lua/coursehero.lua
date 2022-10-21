@@ -58,9 +58,10 @@ require('telescope').setup{
         "--line-number",
         "--column",
         "--smart-case",
-        "--ignore-file=/home/jyu/.ignore"
-    }
-
+        "--ignore-file=/Users/jyu/.ignore"
+    },
+    --path_display = { "shorten" },
+    --dynamic_preview_title
   },
   pickers = {
     -- Default configuration for builtin pickers goes here:
@@ -72,6 +73,11 @@ require('telescope').setup{
     -- builtin picker
   },
   extensions = {
+    --fzf = {
+      --case_mode = "ignore_case"
+      --fuzzy = false,
+      --override_file_sorter = true,
+    --},
     -- Your extension configuration goes here:
     -- extension_name = {
     --   extension_config_key = value,
@@ -79,6 +85,8 @@ require('telescope').setup{
     -- please take a look at the readme of the extension you want to configure
   }
 }
+require('telescope').load_extension('fzf')
+
 
 local builtin = require('telescope.builtin')
 vim.keymap.set('n', '<leader>p', builtin.find_files, {})
@@ -100,34 +108,104 @@ local function isempty(s)
   return s == nil or s == ''
 end
 
-function GetLinkToMaster()
+local function jj_get_link_to_master()
   -- Get the current relative path
-  --local relative_path = vim.cmd([[expand("%")<cr>]])
-  --local relative_path = vim.fn.getreg("%")
+  local workspace_dir = vim.fn.getcwd()
   local relative_path = vim.fn.expand("%:p")
-  if isempty(relative_path) then
-    print("path is nil");
-  else
-    print(relative_path)
-  end
+  relative_path = string.sub(relative_path, string.len(workspace_dir)+1)
 
-  vim.api.nvim_echo({{relative_path}}, false, {})
-  print(relative_path)
+  -- Get the current line number of the cursor
+  local line_number = vim.fn.line(".")
+
+  -- Get the current branch name
+  local branch = 'master'
+
+  -- Get the git remote url as https:// URL
+  local cmd = ":! git remote get-url origin"
+  local origin_url = vim.api.nvim_exec(cmd, true)
+  origin_url = vim.trim(origin_url)
+  origin_url = string.sub(origin_url, string.len(cmd) + 4)
+  origin_url = string.gsub(origin_url, "git@", "https://")
+  origin_url = string.gsub(origin_url, "[.]git", "")
+  origin_url = string.gsub(origin_url, "git.coursehero.com:", "git.coursehero.com/")
+
+  -- Combine the branch name and relative path name
+  local git_url = string.format("%s/-/blob/%s", origin_url, branch)
+  local final_path = git_url .. relative_path .. "#L" .. line_number
+  print(final_path)
+
+  -- Put the final_path into the clipboard buffer
+  vim.fn.setreg("+", final_path)
+end
+
+local function jj_get_link_to_branch()
+  -- Get the current relative path
+  local workspace_dir = vim.fn.getcwd()
+  local relative_path = vim.fn.expand("%:p")
+  relative_path = string.sub(relative_path, string.len(workspace_dir)+1)
+
+  -- Get the current line number of the cursor
+  local line_number = vim.fn.line(".")
 
   -- Get the current branch name
   local cmd = ":! git rev-parse --abbrev-ref HEAD"
   local branch = vim.api.nvim_exec(cmd, true)
-  -- cut the cmd out of the output
-  print(branch)
+  branch = vim.trim(branch)
+  branch = string.sub(branch, string.len(cmd) + 4)
+
+  -- Get the git remote url as https:// URL
+  cmd = ":! git remote get-url origin"
+  local origin_url = vim.api.nvim_exec(cmd, true)
+  origin_url = vim.trim(origin_url)
+  origin_url = string.sub(origin_url, string.len(cmd) + 4)
+  origin_url = string.gsub(origin_url, "git@", "https://")
+  origin_url = string.gsub(origin_url, "[.]git", "")
+  origin_url = string.gsub(origin_url, "git.coursehero.com:", "git.coursehero.com/")
 
   -- Combine the branch name and relative path name
-  local repo_name = "https://git.coursehero.com/" .. branch .. "/" .. relative_path
-  print(repo_name)
+  local git_url = string.format("%s/-/blob/%s", origin_url, branch)
+  local final_path = git_url .. relative_path .. "#L" .. line_number
+  print(final_path)
 
-  -- put into the clipboard register
-  print("end function")
+  -- Put the final_path into the clipboard buffer
+  vim.fn.setreg("+", final_path)
 end
 
-vim.api.nvim_echo({{"hello"}}, false, {})
-print("goodbye")
-GetLinkToMaster()
+local function jj_get_link_to_commit()
+  -- Get the current relative path
+  local workspace_dir = vim.fn.getcwd()
+  local relative_path = vim.fn.expand("%:p")
+  relative_path = string.sub(relative_path, string.len(workspace_dir)+1)
+
+  -- Get the current line number of the cursor
+  local line_number = vim.fn.line(".")
+
+  -- Get the current branch name
+  local full_path = vim.fn.expand('%:p')
+  local cmd = ':! git log -n 1 --pretty=format:"\\%H" -- ' .. full_path
+  local branch = vim.api.nvim_exec(cmd, true)
+  branch = vim.trim(branch)
+  branch = string.sub(branch, string.len(cmd) + 3)
+
+  -- Get the git remote url as https:// URL
+  cmd = ":! git remote get-url origin"
+  local origin_url = vim.api.nvim_exec(cmd, true)
+  origin_url = vim.trim(origin_url)
+  origin_url = string.sub(origin_url, string.len(cmd) + 4)
+  origin_url = string.gsub(origin_url, "git@", "https://")
+  origin_url = string.gsub(origin_url, "[.]git", "")
+  origin_url = string.gsub(origin_url, "git.coursehero.com:", "git.coursehero.com/")
+
+  -- Combine the branch name and relative path name
+  local git_url = string.format("%s/-/blob/%s", origin_url, branch)
+  local final_path = git_url .. relative_path .. "#L" .. line_number
+  print(final_path)
+
+  -- Put the final_path into the clipboard buffer
+  vim.fn.setreg("+", final_path)
+end
+
+
+vim.keymap.set('n', '<leader>wm', jj_get_link_to_master)
+vim.keymap.set('n', '<leader>wb', jj_get_link_to_branch)
+vim.keymap.set('n', '<leader>wc', jj_get_link_to_commit)

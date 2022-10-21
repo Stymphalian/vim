@@ -67,7 +67,6 @@ require('packer').startup(function(use)
   use 'rafi/awesome-vim-colorschemes'
   use 'marko-cerovac/material.nvim'
   use 'https://github.com/sickill/vim-monokai'
-  use 'rafi/awesome-vim-colorschemes'
 
   -- Language Syntax
   use 'sheerun/vim-polyglot'
@@ -81,6 +80,8 @@ require('packer').startup(function(use)
   use {'nvim-telescope/telescope-fzf-native.nvim', run='make' }
   use 'nvim-telescope/telescope.nvim'
   use 'mileszs/ack.vim'
+  use {'junegunn/fzf', run = ":call fzf#install()" }
+  use 'junegunn/fzf.vim'
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
@@ -107,12 +108,12 @@ vim.cmd 'colorscheme monokai'
 --vim.o.termguicolors = true;
 --require('material').setup()
 
-require('lsp-config')             -- ~/.config/nvim/lua/lsp-config.lua, <leader>l
+require('lsp-config')             -- ~/.config/nvim/lua/lsp-config.lua,    -- <leader>l
 require('lsp-cmp')                -- ~/.config/nvim/lua/lsp-cmp.lua
 require('delimitMate')            -- ~/.config/nvim/lua/delimitMate.lua
-require('jj/run-command')         -- ~/.config/nvim/lua/jj/run-command.lua
-require('jj/ctrl_d')              -- ~/.config/nvim/lua/jj/ctrl_d.lua
-require('coursehero')             -- ~/.config/nvim/lua/coursehero.lua -- <leader>c
+require('jj/run-command')         -- ~/.config/nvim/lua/jj/run-command.lua -- <leader>m
+require('jj/ctrl_d')              -- ~/.config/nvim/lua/jj/ctrl_d.lua      -- <leader>m
+require('coursehero')             -- ~/.config/nvim/lua/coursehero.lua     -- <leader>w
 --require('jj/formatter')         -- ~/.config/nvim/lua/jj/formatter.lua
 
 
@@ -174,7 +175,7 @@ vim.cmd([[
 ]])
 
 
--- vim.cmd('colorscheme materialbox')
+ vim.cmd('colorscheme materialbox')
 
 
 local function map(mode, shortcut, command)
@@ -245,7 +246,7 @@ nmap('<leader>mt', '<Esc>b~lea')   -- Turn the current word into title case
 vmap('<leader>mc', '"+y')          -- Copy to system clipboard
 nmap("<leader>mq", "<cmd>x<cr>")   -- Saves the file if modified and quit
 nmap("<leader>mQ", "<cmd>qa!<cr>") -- Quit all opened bufferss
-nmap("<leader>md", ":Ack! <C-r>=expand('<cword>')<CR><CR>") -- Quickly save the file
+--nmap("<leader>md", ":Ack! <C-r>=expand('<cword>')<CR><CR>") -- Quickly save the file
 nmap("<leader>.", "<Esc><cmd>w<cr>") -- Quickly save the file
 
 -- "Let me EASILY switch between cpp and header files
