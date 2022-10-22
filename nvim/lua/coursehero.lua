@@ -29,11 +29,11 @@ vim.cmd([[
 ]])
 
 
-vim.cmd([[
-  if executable('ag')
-    let g:ackprg = 'ag --vimgrep'
-  endif
-]])
+--vim.cmd([[
+--  if executable('ag')
+--    let g:ackprg = 'ag --vimgrep'
+--  endif
+--]])
 
 
 -- Work Telescope settings
@@ -41,6 +41,7 @@ require('telescope').setup{
   defaults = {
     -- Default configuration for telescope goes here:
     -- config_key = value,
+    selection_strategy = "row",
     scroll_strategy = "limit",
     mappings = {
       i = {
@@ -50,6 +51,7 @@ require('telescope').setup{
       },
     },
     preview = false,
+    --preview = true,
     vimgrep_arguments = {
         "rg",
         "--color=never",
@@ -60,6 +62,16 @@ require('telescope').setup{
         "--smart-case",
         "--ignore-file=/Users/jyu/.ignore"
     },
+    layout_strategy = "center",
+    layout_config = {
+      center = {
+        anchor = "S",
+        width = 0.9,
+        height = 0.4,
+        prompt_position = "bottom",
+      }
+    },
+    --file_sorter = require('telescope.sorters').get_fzy_sorter
     --path_display = { "shorten" },
     --dynamic_preview_title
   },
@@ -71,13 +83,16 @@ require('telescope').setup{
     -- }
     -- Now the picker_config_key will be applied every time you call this
     -- builtin picker
+    oldfiles = {
+      only_cwd=true
+    }
   },
   extensions = {
-    --fzf = {
-      --case_mode = "ignore_case"
+    fzf = {
+      case_mode = "ignore_case",
       --fuzzy = false,
       --override_file_sorter = true,
-    --},
+    },
     -- Your extension configuration goes here:
     -- extension_name = {
     --   extension_config_key = value,
@@ -87,26 +102,48 @@ require('telescope').setup{
 }
 require('telescope').load_extension('fzf')
 
+-- configure fzf
+vim.cmd([[
+" An action can be a reference to a function that processes selected lines
+function! s:build_quickfix_list(lines)
+  call setqflist(map(copy(a:lines), '{ "filename": v:val }'))
+  copen
+  cc
+endfunction
 
+let g:fzf_action = {
+  \ 'ctrl-q': function('s:build_quickfix_list'),
+  \ 'ctrl-t': 'tab split',
+  \ 'ctrl-x': 'split',
+  \ 'ctrl-v': 'vsplit' }
+
+let g:fzf_layout = { 
+  \ 'window': { 
+  \   'width': 1.0, 
+  \   'height': 0.4,
+  \   'relative': v:true, 
+  \   'yoffset': 1.0, 
+  \   'xoffset': 0.0 
+  \ } }
+"let g:fzf_preview_window = ['down,40%', 'ctrl-/']
+let g:fzf_preview_window = []
+let g:fzf_command_prefix = 'FzfVim'
+]])
+
+
+-- telescope bindings
 local builtin = require('telescope.builtin')
-vim.keymap.set('n', '<leader>p', builtin.find_files, {})
 vim.keymap.set('n', '<leader>P', "<cmd>Telescope<cr>", {})
-
-vim.keymap.set('n', '<leader>pa', builtin.help_tags, {desc="help tags"})
-vim.keymap.set('n', '<leader>ps', builtin.buffers, {desc = "buffers"})
+vim.keymap.set('n', '<leader>p', "<cmd>FzfVimGFiles<cr>", {})
+--vim.keymap.set('n', '<leader>p', builtin.find_files, {})
+--vim.keymap.set('n', '<leader>pa', builtin.help_tags, {desc="help tags"})
+--vim.keymap.set('n', '<leader>ps', builtin.buffers, {desc = "buffers"})
 vim.keymap.set('n', '<leader>pd', builtin.grep_string, {desc = "grep_string"})
+vim.keymap.set('n', '<leader>pD', ":FzfVimRg <C-r>=expand('<cword>')<cr><cr>", {})
 vim.keymap.set('n', '<leader>pf', builtin.live_grep, {desc = "live_grep"})
-
-vim.keymap.set('n', '<leader>pr', builtin.resume, {desc = "resume"})
+--vim.keymap.set('n', '<leader>pr', builtin.resume, {desc = "resume"})
 vim.keymap.set('n', '<leader>pe', builtin.git_status, {desc = "git_status"})
-vim.keymap.set('n', '<leader>pw',
-  "<cmd>:lua require'telescope.builtin'.oldfiles{only_cwd=true}<cr>",
-  {desc = "oldfiles"}
-)
-
-local function isempty(s)
-  return s == nil or s == ''
-end
+vim.keymap.set('n', '<leader>pw', builtin.oldfiles, {desc="oldfiles"})
 
 local function jj_get_link_to_master()
   -- Get the current relative path
@@ -209,3 +246,6 @@ end
 vim.keymap.set('n', '<leader>wm', jj_get_link_to_master)
 vim.keymap.set('n', '<leader>wb', jj_get_link_to_branch)
 vim.keymap.set('n', '<leader>wc', jj_get_link_to_commit)
+
+
+
