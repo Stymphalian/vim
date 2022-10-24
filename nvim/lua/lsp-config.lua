@@ -36,15 +36,16 @@ local on_attach = function(_, bufnr)
   vim.keymap.set('n', 'gk', vim.lsp.buf.signature_help, bufopts)
   --vim.keymap.set('i', '<C-0>', '<cmd>vim.lsp.buf.signature_help()<cr>', bufopts)
   --vim.keymap.set('n', '<F2>', vim.lsp.buf.rename, bufopts)
-    vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, bufopts)
-    vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
-    --vim.keymap.set('n', '<space>f', vim.lsp.buf.formatting, bufopts)
-    --vim.keymap.set('n', '<space>f', function() vim.lsp.buf.format { async = true } end, bufopts)
-    vim.keymap.set('n', '<space>f', vim.lsp.buf.formatting, bufopts)
-    vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, bufopts)
-    vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, bufopts)
-    vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, bufopts)
-    vim.keymap.set('n', ']d', vim.diagnostic.goto_next, bufopts)
+  vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, bufopts)
+  vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
+  --vim.keymap.set('n', '<space>f', vim.lsp.buf.formatting, bufopts)
+  vim.keymap.set('n', '<space>f', function() vim.lsp.buf.format { async = true } end, bufopts)
+  vim.keymap.set('v', '<space>f', function() vim.lsp.buf.format { async = true } end, bufopts)
+  --vim.keymap.set('n', '<space>f', vim.lsp.buf.formatting, bufopts)
+  vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, bufopts)
+  vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, bufopts)
+  vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, bufopts)
+  vim.keymap.set('n', ']d', vim.diagnostic.goto_next, bufopts)
   end
 
 local function setup_servers()
@@ -55,7 +56,7 @@ local function setup_servers()
         "rust_analyzer",
         "pyright",
         "jsonls",
-        "tsserver"
+        "tsserver",
       }
   })
 
@@ -74,7 +75,17 @@ local function setup_servers()
       capabilities = capabilities,
       -- Server-specific settings...
       settings = {
-        ["rust-analyzer"] = {}
+        ["rust-analyzer"] = {
+          rustfmt = {
+            rangeFormatter = {
+              enable = true
+            },
+            extraArgs = {
+               "--config",
+               "max_width=80",
+            }
+          }
+        }
       }
   }
 
@@ -144,6 +155,15 @@ local function setup_servers()
       tsserver = {}
     }
   }
+
+  --require('lspconfig')['glslls'].setup {
+  --  on_attach = on_attach,
+  --  flags = lsp_flags,
+  --  capabilities = capabilities,
+  --  settings = {
+  --    glslls = {}
+  --  }
+  --}
 
 end
 
