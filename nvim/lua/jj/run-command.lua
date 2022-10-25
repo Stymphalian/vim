@@ -10,14 +10,12 @@ local function get_command(extension)
   return "cat"
 end
 
-local function run_current()
+local function run_current_using_nvim_terminal()
   local current_file = vim.fn.expand("%:t")
   local ext = vim.fn.expand('%:e')
   local cmd = get_command(ext) .. ' ' .. current_file
-  --vim.pretty_print(cmd)
 
   if vim.g.neoterm.last_id ~= 0 then
-    --print("neoterm exists")
     local id = vim.g.neoterm.last_id
     local instance = vim.g.neoterm.instances[tostring(id)]
     if vim.fn.bufwinnr(instance.buffer_id) <= 0 then
@@ -35,13 +33,48 @@ local function run_current()
     vim.cmd("call neoterm#do({'cmd': 'clear'})")
     vim.cmd("call neoterm#do({'cmd': '" .. cmd .. "' })")
   end
+end
 
-  return "hello"
+local function run_current_using_tmux()
+  local current_file = vim.fn.expand("%:t")
+  local ext = vim.fn.expand('%:e')
+  local cmd = get_command(ext) .. ' ' .. current_file
+
+  local tmux_session = "default";
+  local win_name = "runner";
+  local session_window = tmux_session .. ":" .. win_name
+
+  -- check if a tmux session exists
+  vim.cmd("silent :! tmux has-session -t " .. tmux_session)
+  local has_tmux_session = vim.v.shell_error == 0
+
+  -- if no session exists then stop, ask the User to start a tmux session
+  if not has_tmux_session then
+    vim.pretty_print("Please start a tmux session first")
+    return
+  end
+
+  -- if a session exists then check for the 'runner' window
+  vim.cmd("silent :! tmux select-window -t " .. session_window)
+  local has_window = vim.v.shell_error == 0
+
+  -- if the window does not exist the create it
+  if not has_window then
+    vim.cmd('silent :! tmux new-window -c "$PWD" -n ' .. win_name ..' -t ' .. tmux_session)
+    --print('Please start a window called "' .. win_name ..'" in the tmux session')
+    --return
+  end
+
+  -- Use tmux 'send-keys' to run the command
+  vim.cmd('silent :! tmux send-keys -t ' .. session_window .. ' "' .. cmd .. '" ENTER')
+
+  -- Go back to the previous window
+  vim.cmd("silent :! tmux last-window -t " .. tmux_session)
 end
 
 local bufopts= {noremap=true, silent=true}
-vim.keymap.set('n', '<leader>mr', run_current, bufopts)
-
+vim.keymap.set('n', '<leader>mr', run_current_using_tmux, bufopts)
+vim.keymap.set('n', '<leader>mR', run_current_using_nvim_terminal, bufopts)
 --nmap('<leader>mr', run_current)
 
 --vim.cmd([[
