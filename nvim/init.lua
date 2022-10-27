@@ -34,18 +34,20 @@ require('packer').startup(function(use)
   --use 'https://github.com/Stymphalian/swit_ch.vim'
   use 'scrooloose/nerdtree'
   use 'scrooloose/nerdcommenter'
-  use 'jeetsukumaran/vim-buffergator'
+  --use 'jeetsukumaran/vim-buffergator'
   use 'jeffkreeftmeijer/vim-numbertoggle'
   use "folke/which-key.nvim"                -- tooltip to show key-mappings
-  use 'kassio/neoterm'                      -- API to interact with nvim term
+  --use 'kassio/neoterm'                    -- API to interact with nvim term
 
   -- Version Control
-  --use 'https://github.com/tpope/vim-fugitive'
+  use 'https://github.com/tpope/vim-fugitive'
   use 'airblade/vim-gitgutter'
 
   -- Easy movement
   use 'justinmk/vim-sneak'
   use 'tpope/vim-surround'
+  use {'mg979/vim-visual-multi', branch='master'}
+
 
   -- Status-line
   use 'vim-airline/vim-airline'
@@ -88,7 +90,7 @@ end)
 -- Plugin vimrcs
 vim.cmd('source ~/.vim/vimrcs/nerdtree/.vimrc')                            --"<leader>d
 vim.cmd('source ~/.vim/vimrcs/nerdcommenter/.vimrc')                       --"<leader>/
-vim.cmd('source ~/.vim/vimrcs/vim-buffergator/.vimrc')                     --"<leader>b
+--vim.cmd('source ~/.vim/vimrcs/vim-buffergator/.vimrc')                     --"<leader>b
 vim.cmd('source ~/.vim/vimrcs/vim-numbertoggle/.vimrc')                    --"empty
 vim.cmd('source ~/.vim/vimrcs/vim-sneak/.vimrc')                           --"empty (default s <>)
 vim.cmd('source ~/.vim/vimrcs/vim-surround/.vimrc')                        --"empty (default <cyd>s<>)
@@ -234,6 +236,7 @@ vmap('<leader>mc', '"+y')          -- Copy to system clipboard
 nmap("<leader>mq", "<cmd>x<cr>")   -- Saves the file if modified and quit
 nmap("<leader>mQ", "<cmd>qa!<cr>") -- Quit all opened bufferss
 nmap("<leader>.", "<Esc><cmd>w<cr>") -- Quickly save the file
+nmap("<leader>bq", ":bp <BAR> bd#<cr>") -- Close the current buffer
 
 -- "Let me EASILY switch between cpp and header files
 -- "Only works for files in the current directory but should be find for now
@@ -275,6 +278,8 @@ nmap("<leader>.", "<Esc><cmd>w<cr>") -- Quickly save the file
 --
 -- close all buffers except this one
 -- :%bd|e#  
+--
+-- {visual} g<Ctrl-a>  -- increment numbers from a visual selection 
 
 -- "nnoremap <leader>ve  :e ~/.vim/.vimrc<cr>Gj|  "Open the vimrc in a new vertical 
 nmap('<leader>ve', ':e ~/.config/nvim/init.lua<cr>')  -- "Open the vimrc in a new vertical 
