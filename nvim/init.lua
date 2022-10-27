@@ -13,7 +13,7 @@ local ensure_packer = function()
   if fn.empty(fn.glob(install_path)) > 0 then
     fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
     vim.cmd [[packadd packer.nvim]]
-    return true
+     return true
   end
   return false
 end
@@ -31,12 +31,13 @@ require('packer').startup(function(use)
 
   -- Good things
   --use {'https://github.com/ctrlpvim/ctrlp.vim', disable=true}
+  --use 'https://github.com/Stymphalian/swit_ch.vim'
   use 'scrooloose/nerdtree'
   use 'scrooloose/nerdcommenter'
-  use 'jeetsukumaran/vim-buffergator'
+  --use 'jeetsukumaran/vim-buffergator'
   use 'jeffkreeftmeijer/vim-numbertoggle'
   use "folke/which-key.nvim"                -- tooltip to show key-mappings
-  -- use 'https://github.com/Stymphalian/swit_ch.vim'
+  --use 'kassio/neoterm'                    -- API to interact with nvim term
 
   -- Version Control
   use 'https://github.com/tpope/vim-fugitive'
@@ -45,14 +46,13 @@ require('packer').startup(function(use)
   -- Easy movement
   use 'justinmk/vim-sneak'
   use 'tpope/vim-surround'
-  use 'psliwka/vim-smoothie'  -- smooth movement
+  use {'mg979/vim-visual-multi', branch='master'}
 
   -- Status-line
   use 'vim-airline/vim-airline'
   use 'vim-airline/vim-airline-themes'
 
   -- Autocomplete
-  --use {'https://github.com/neoclide/coc.nvim/', branch='release'}
   use 'williamboman/mason.nvim'                                 -- General package downloader
   use 'williamboman/mason-lspconfig.nvim'                       -- Mason LSP downloader
   use 'neovim/nvim-lspconfig'                                   -- Neovim's LSP client configs
@@ -66,13 +66,9 @@ require('packer').startup(function(use)
   use 'tomasr/molokai'
   use 'rafi/awesome-vim-colorschemes'
   use 'marko-cerovac/material.nvim'
-  use 'https://github.com/sickill/vim-monokai'
 
   -- Language Syntax
   use 'sheerun/vim-polyglot'
-  -- use 'https://github.com/tikhomirov/vim-glsl'
-  -- use 'https://github.com/rust-lang/rust.vim'
-  -- use 'https://github.com/tpope/vim-ragtag'
 
   -- Telescope plugins
   use 'nvim-lua/plenary.nvim'
@@ -81,6 +77,10 @@ require('packer').startup(function(use)
   use 'nvim-telescope/telescope.nvim'
   use {'junegunn/fzf', run = ":call fzf#install()"}
   use 'junegunn/fzf.vim'
+
+  -- Work
+  use 'https://github.com/sickill/vim-monokai'
+  use 'psliwka/vim-smoothie'  -- smooth movement
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
@@ -91,30 +91,25 @@ end)
 
 
 -- Plugin vimrcs
-vim.cmd('source ~/.vim/vimrcs/nerdtree/.vimrc')              --"<leader>d
-vim.cmd('source ~/.vim/vimrcs/nerdcommenter/.vimrc')         --"<leader>/
-vim.cmd('source ~/.vim/vimrcs/vim-buffergator/.vimrc')       --"<leader>b
-vim.cmd('source ~/.vim/vimrcs/vim-numbertoggle/.vimrc')      --"empty
-vim.cmd('source ~/.vim/vimrcs/vim-sneak/.vimrc')             --"empty (default s <>)
-vim.cmd('source ~/.vim/vimrcs/vim-surround/.vimrc')          --"empty (default <cyd>s<>)
-vim.cmd('source ~/.vim/vimrcs/vim-airline/.vimrc')           --"empty
---vim.cmd('source ~/.vim/vimrcs/telescope.nvim/.vimrc')        --"<leader>p
-require("which-key").setup()
-
---vim.cmd 'colorscheme oceanic_material'
-vim.cmd 'colorscheme monokai'
---vim.cmd('set termguicolors')
---vim.o.termguicolors = true;
---require('material').setup()
-
-require('material').setup()
+vim.cmd('source ~/.vim/vimrcs/nerdtree/.vimrc')                            --"<leader>d
+vim.cmd('source ~/.vim/vimrcs/nerdcommenter/.vimrc')                       --"<leader>/
+--vim.cmd('source ~/.vim/vimrcs/vim-buffergator/.vimrc')                     --"<leader>b
+vim.cmd('source ~/.vim/vimrcs/vim-numbertoggle/.vimrc')                    --"empty
+vim.cmd('source ~/.vim/vimrcs/vim-sneak/.vimrc')                           --"empty (default s <>)
+vim.cmd('source ~/.vim/vimrcs/vim-surround/.vimrc')                        --"empty (default <cyd>s<>)
+vim.cmd('source ~/.vim/vimrcs/vim-airline/.vimrc')                         --"empty
+--vim.cmd('source ~/.vim/vimrcs/telescope.nvim/.vimrc')                      --"<leader>p
+require('fzf')                    -- ~/.config/nvim/lua/fzf.lua            -- <leader>p
 require('lsp-config')             -- ~/.config/nvim/lua/lsp-config.lua,    -- <leader>l
 require('lsp-cmp')                -- ~/.config/nvim/lua/lsp-cmp.lua     
-require('delimitMate')            -- ~/.config/nvim/lua/delimitMate.lua
+require('delimitMate')            -- ~/.config/nvim/lua/delimitMate.lua   
 require('jj/run-command')         -- ~/.config/nvim/lua/jj/run-command.lua -- <leader>m
 require('jj/ctrl_d')              -- ~/.config/nvim/lua/jj/ctrl_d.lua      -- <leader>m
+require("which-key").setup()
 --require('jj/formatter')         -- ~/.config/nvim/lua/jj/formatter.lua 
 
+
+-- Work
 require('coursehero')             -- ~/.config/nvim/lua/coursehero.lua     -- <leader>w
 
 -- ----------------------------------------------------------------------------
@@ -175,8 +170,15 @@ vim.cmd([[
   autocmd BufWinEnter *.* silent! loadview
 ]])
 
-
- vim.cmd('colorscheme materialbox')
+-- Colorschemes
+require('material').setup()
+vim.cmd('colorscheme materialbox')
+--vim.cmd 'colorscheme oceanic_material'
+--vim.cmd 'colorscheme monokai'
+--vim.cmd('set termguicolors')
+--vim.o.termguicolors = true;
+--require('material').setup()
+--require('material').setup()
 
 
 local function map(mode, shortcut, command)
@@ -249,6 +251,7 @@ nmap("<leader>mq", "<cmd>x<cr>")   -- Saves the file if modified and quit
 nmap("<leader>mQ", "<cmd>qa!<cr>") -- Quit all opened bufferss
 --nmap("<leader>md", ":Ack! <C-r>=expand('<cword>')<CR><CR>") -- Quickly save the file
 nmap("<leader>.", "<Esc><cmd>w<cr>") -- Quickly save the file
+nmap("<leader>bq", ":bp <BAR> bd#<cr>") -- Close the current buffer
 
 -- "Let me EASILY switch between cpp and header files
 -- "Only works for files in the current directory but should be find for now
@@ -284,7 +287,14 @@ nmap("<leader>.", "<Esc><cmd>w<cr>") -- Quickly save the file
 --
 -- quickfix window
 -- preview window
+-- help window
 --
+-- set cmdheight=1 when NERDtree fucks you up
+--
+-- close all buffers except this one
+-- :%bd|e#  
+--
+-- {visual} g<Ctrl-a>  -- increment numbers from a visual selection 
 
 -- "nnoremap <leader>ve  :e ~/.vim/.vimrc<cr>Gj|  "Open the vimrc in a new vertical
 nmap('<leader>ve', ':e ~/.config/nvim/init.lua<cr>')  -- "Open the vimrc in a new vertical

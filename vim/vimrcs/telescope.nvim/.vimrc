@@ -19,14 +19,23 @@ require('telescope').setup{
     },
     preview = false,
     vimgrep_arguments = {
-        "rg",
-        "--color=never",
-        "--no-heading",
-        "--with-filename",
-        "--line-number",
-        "--column",
-        "--smart-case",
-        "--ignore-file=/home/jyu/.ignore"
+      "rg",
+      "--color=never",
+      "--no-heading",
+      "--with-filename",
+      "--line-number",
+      "--column",
+      "--smart-case",
+      -- "--ignore_file=~/.ignore",
+    },
+    layout_strategy = "center",
+    layout_config = {
+      center = {
+        height = 0.4,
+        width = 0.9,
+        prompt_position = "bottom",
+        anchor = "S"
+      }
     }
   },
   pickers = {
@@ -52,12 +61,13 @@ EOF
 
 nnoremap <leader>P <cmd>Telescope<cr>
 nnoremap <leader>p  <cmd>Telescope find_files<cr>
+"nnoremap <leader>p  <cmd>FzfFiles<cr>
 
 nnoremap <leader>pa <cmd>Telescope help_tags<cr>
-nnoremap <leader>ps <cmd>Telescope buffers<cr>
 nnoremap <leader>pd <cmd>Telescope grep_string<cr>
 nnoremap <leader>pf <cmd>Telescope live_grep<cr>
-
 nnoremap <leader>pr <cmd>Telescope resume<cr>
 nnoremap <leader>pe <cmd>Telescope git_status<cr>
+
+"nnoremap <leader>ps <cmd>Telescope buffers<cr>
 "nnoremap <leader>pw <cmd>Telescope oldfiles<cr>

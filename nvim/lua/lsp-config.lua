@@ -39,8 +39,9 @@ local on_attach = function(_, bufnr)
   vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, bufopts)
   vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
   --vim.keymap.set('n', '<space>f', vim.lsp.buf.formatting, bufopts)
-  --vim.keymap.set('n', '<space>f', function() vim.lsp.buf.format { async = true } end, bufopts)
-  vim.keymap.set('n', '<space>f', vim.lsp.buf.formatting, bufopts)
+  vim.keymap.set('n', '<space>f', function() vim.lsp.buf.format { async = true } end, bufopts)
+  vim.keymap.set('v', '<space>f', function() vim.lsp.buf.format { async = true } end, bufopts)
+  --vim.keymap.set('n', '<space>f', vim.lsp.buf.formatting, bufopts)
   vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, bufopts)
   vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, bufopts)
   vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, bufopts)
@@ -76,7 +77,17 @@ local function setup_servers()
       capabilities = capabilities,
       -- Server-specific settings...
       settings = {
-        ["rust-analyzer"] = {}
+        ["rust-analyzer"] = {
+          rustfmt = {
+            rangeFormatter = {
+              enable = true
+            },
+            extraArgs = {
+               "--config",
+               "max_width=80",
+            }
+          }
+        }
       }
   }
 
@@ -156,6 +167,15 @@ local function setup_servers()
     }
   }
 
+  --require('lspconfig')['glslls'].setup {
+  --  on_attach = on_attach,
+  --  flags = lsp_flags,
+  --  capabilities = capabilities,
+  --  settings = {
+  --    glslls = {}
+  --  }
+  --}
+  --
   require('lspconfig')['gopls'].setup {
     on_attach = on_attach,
     flags = lsp_flags,
