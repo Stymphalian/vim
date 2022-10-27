@@ -39,7 +39,7 @@ require('packer').startup(function(use)
   -- use 'https://github.com/Stymphalian/swit_ch.vim'
 
   -- Version Control
-  -- use 'https://github.com/tpope/vim-fugitive'
+  use 'https://github.com/tpope/vim-fugitive'
   use 'airblade/vim-gitgutter'
 
   -- Easy movement
@@ -164,6 +164,7 @@ vim.o.modeline = false       -- "Disable reading modeline snppets from the file
 vim.o.mouse="a"              -- "Enable the mouse"
 --let loaded_matchparen=1    -- "Disable '{' highlight matching
 vim.o.lazyredraw=true        -- "Faster macros appliction
+vim.o.redrawtime=10000       -- increase redraw time for syntax highlighting
 
 vim.o.foldenable=true
 vim.o.foldmethod='manual'    -- " fold based on indent
