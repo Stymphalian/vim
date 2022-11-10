@@ -2,7 +2,8 @@
 ""
 
 " Keep the root of the NERD tree the directory of when vim first got opened
-let NERDTreeChDirMode=2
+let g:NERDTreeChDirMode=0
+let g:NERDTreeMinimalMenu=1
 
 " Key maping to show/hide the nerd-treej
 nnoremap <leader>do :NERDTreeToggle<CR>

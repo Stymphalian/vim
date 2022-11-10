@@ -35,7 +35,7 @@ require('packer').startup(function(use)
   use 'scrooloose/nerdtree'
   use 'scrooloose/nerdcommenter'
   --use 'jeetsukumaran/vim-buffergator'
-  use 'jeffkreeftmeijer/vim-numbertoggle'
+  --use 'https://github.com/jeffkreeftmeijer/vim-numbertoggle'
   use "folke/which-key.nvim"                -- tooltip to show key-mappings
   --use 'kassio/neoterm'                    -- API to interact with nvim term
 
@@ -231,12 +231,14 @@ imap('<C-l>', '<C-o>l')
 tmap("<Esc>", [[<c-\><c-n>]])
 -- <leader>m
 nmap('<leader>mu', '<Esc>viwUea')  -- Turn the word under cursor to upper case
-nmap('<leader>mt', '<Esc>b~lea')   -- Turn the current word into title case
+nmap('<leader>mT', '<Esc>b~lea')   -- Turn the current word into title case
 vmap('<leader>mc', '"+y')          -- Copy to system clipboard
 nmap("<leader>mq", "<cmd>x<cr>")   -- Saves the file if modified and quit
 nmap("<leader>mQ", "<cmd>qa!<cr>") -- Quit all opened bufferss
+nmap("<leader>mc", ":cclose<cr>")  -- Close the quickfix window
 nmap("<leader>.", "<Esc><cmd>w<cr>") -- Quickly save the file
 nmap("<leader>bq", ":bp <BAR> bd#<cr>") -- Close the current buffer
+nmap("<leader>bc", ":cclose<cr>")  -- Close the quickfix window
 
 -- "Let me EASILY switch between cpp and header files
 -- "Only works for files in the current directory but should be find for now

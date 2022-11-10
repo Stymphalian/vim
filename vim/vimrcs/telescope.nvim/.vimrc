@@ -68,6 +68,8 @@ nnoremap <leader>pd <cmd>Telescope grep_string<cr>
 nnoremap <leader>pf <cmd>Telescope live_grep<cr>
 nnoremap <leader>pr <cmd>Telescope resume<cr>
 nnoremap <leader>pe <cmd>Telescope git_status<cr>
+nnoremap <leader>ps <cmd>Telescope lsp_document_symbols<cr>
+nnoremap <leader>pw <cmd>Telescope lsp_workspace_symbols<cr>
 
 "nnoremap <leader>ps <cmd>Telescope buffers<cr>
 "nnoremap <leader>pw <cmd>Telescope oldfiles<cr>
