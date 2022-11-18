@@ -35,7 +35,7 @@ local function run_current_using_nvim_terminal()
   end
 end
 
-local function run_current_using_tmux()
+local function run_current_using_tmux(switch)
   local current_file = vim.fn.expand("%:t")
   local ext = vim.fn.expand('%:e')
   local cmd = get_command(ext) .. ' ' .. current_file
@@ -69,12 +69,71 @@ local function run_current_using_tmux()
   vim.cmd('silent :! tmux send-keys -t ' .. session_window .. ' "' .. cmd .. '" ENTER')
 
   -- Go back to the previous window
-  vim.cmd("silent :! tmux last-window -t " .. tmux_session)
+  if not switch then
+    vim.cmd("silent :! tmux last-window -t " .. tmux_session)
+  end
+
 end
 
+local function run_current_using_tmux_pane(switch)
+  local current_file = vim.fn.expand("%:t")
+  local ext = vim.fn.expand('%:e')
+  local cmd = get_command(ext) .. ' ' .. current_file
+
+  local tmux_session = "default";
+  --local id = [[`tmux display-message -p '\#{session_name}:\#{window_index}.\#{pane_index}'`]]
+  --local orig_id = [[`tmux display-message -p '\#{session_name}:\#{window_index}.0'`]]
+  local id = [[`tmux display-message -p '\#{session_name}:\#{window_index}.1'`]]
+
+  -- check if a tmux session exists
+  vim.cmd("silent :! tmux has-session -t " .. tmux_session)
+  local has_tmux_session = vim.v.shell_error == 0
+
+  -- if no session exists then stop, ask the User to start a tmux session
+  if not has_tmux_session then
+    vim.pretty_print("Please start a tmux session first")
+    return
+  end
+
+  -- If no pane is open in this window then open one
+  vim.cmd([[silent :! tmux has-session -t ]] .. id)
+  local has_pane = vim.v.shell_error == 0
+  if not has_pane then
+    -- Open up a pane if it doesn't exist
+    vim.cmd([[silent :! tmux split-window -h -c '\#{pane_current_path}']])
+  end
+
+  -- Use tmux 'send-keys' to run the command
+  vim.cmd('silent :! tmux send-keys -t ' .. id .. ' "' .. cmd .. '" ENTER')
+
+  if switch then
+    vim.cmd([[silent :! tmux select-pane -t ]] .. id)
+  end
+end
+
+local function run_current_using_tmux_pane_noswitch()
+  run_current_using_tmux_pane(false)
+end
+
+local function run_current_using_tmux_pane_switch()
+  run_current_using_tmux_pane(true)
+end
+
+local function run_current_using_tmux_win_noswitch()
+  run_current_using_tmux(false)
+end
+
+local function run_current_using_tmux_win_switch()
+  run_current_using_tmux(true)
+end
+
+
 local bufopts= {noremap=true, silent=true}
-vim.keymap.set('n', '<leader>mr', run_current_using_tmux, bufopts)
-vim.keymap.set('n', '<leader>mR', run_current_using_nvim_terminal, bufopts)
+vim.keymap.set('n', '<leader>mr', run_current_using_tmux_pane_switch, bufopts)
+vim.keymap.set('n', '<leader>mR', run_current_using_tmux_pane_noswitch, bufopts)
+vim.keymap.set('n', '<leader>mRW', run_current_using_tmux_win_switch, bufopts)
+vim.keymap.set('n', '<leader>mrw', run_current_using_tmux_win_noswitch, bufopts)
+--vim.keymap.set('n', '<leader>mR', run_current_using_nvim_terminal, bufopts)
 --nmap('<leader>mr', run_current)
 
 --vim.cmd([[

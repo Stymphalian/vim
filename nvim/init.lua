@@ -18,6 +18,8 @@ local ensure_packer = function()
   return false
 end
 
+-- test 
+-- test2
 local packer_bootstrap = ensure_packer()
 
 require('packer').startup(function(use)
@@ -35,7 +37,7 @@ require('packer').startup(function(use)
   use 'scrooloose/nerdtree'
   use 'scrooloose/nerdcommenter'
   --use 'jeetsukumaran/vim-buffergator'
-  use 'jeffkreeftmeijer/vim-numbertoggle'
+  --use 'https://github.com/jeffkreeftmeijer/vim-numbertoggle'
   use "folke/which-key.nvim"                -- tooltip to show key-mappings
   --use 'kassio/neoterm'                    -- API to interact with nvim term
 
@@ -116,8 +118,8 @@ require('coursehero')             -- ~/.config/nvim/lua/coursehero.lua     -- <l
 -- Personal settings
 -- ----------------------------------------------------------------------------
 vim.o.hidden = true       --When a buffer is abandoned then unload the buffer
-vim.o.autoread = true    --auto-reload the file if it is detectedd as changed
---vim.o.autochdir         -- change to the directoy which contains the open file
+vim.o.autoread = true     --auto-reload the file if it is detectedd as changed
+vim.o.autochdir = false   -- change to the directoy which contains the open file
 
 vim.o.smarttab = true    -- "when tab is pressed use tabstop number of spaces
 vim.o.tabstop = 2          -- "number of spaces a tab in the file counts for
@@ -126,6 +128,7 @@ vim.o.expandtab = true  -- "expand a tab characters into the space chars
 vim.o.autoindent = true  -- "automatically indent when starting a new line
 vim.o.smartindent = true -- "do c-like indenting when possible
 vim.o.wrap = false       -- "don't wrap the lines if it is longer than the split
+vim.o.fixendofline = false -- fix the end of line
 
 -- "makes insert-mode backspace work as expected
 -- "makes insert-mode arrow keys work as expected
@@ -245,13 +248,14 @@ imap('<C-l>', '<C-o>l')
 tmap("<Esc>", [[<c-\><c-n>]])
 -- <leader>m
 nmap('<leader>mu', '<Esc>viwUea')  -- Turn the word under cursor to upper case
-nmap('<leader>mt', '<Esc>b~lea')   -- Turn the current word into title case
+nmap('<leader>mT', '<Esc>b~lea')   -- Turn the current word into title case
 vmap('<leader>mc', '"+y')          -- Copy to system clipboard
 nmap("<leader>mq", "<cmd>x<cr>")   -- Saves the file if modified and quit
 nmap("<leader>mQ", "<cmd>qa!<cr>") -- Quit all opened bufferss
---nmap("<leader>md", ":Ack! <C-r>=expand('<cword>')<CR><CR>") -- Quickly save the file
+nmap("<leader>mc", ":cclose<cr>")  -- Close the quickfix window
 nmap("<leader>.", "<Esc><cmd>w<cr>") -- Quickly save the file
 nmap("<leader>bq", ":bp <BAR> bd#<cr>") -- Close the current buffer
+nmap("<leader>bc", ":cclose<cr>")  -- Close the quickfix window
 
 -- "Let me EASILY switch between cpp and header files
 -- "Only works for files in the current directory but should be find for now

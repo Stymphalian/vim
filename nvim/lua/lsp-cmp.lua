@@ -7,7 +7,7 @@ cmp.setup {
     expand = function(args)
       -- For `ultisnips` user.
       --vim.fn["UltiSnips#Anon"](args.body)
-        vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
+      vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
     end,
   },
   mapping = cmp.mapping.preset.insert {
