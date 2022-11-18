@@ -109,8 +109,8 @@ require("which-key").setup()
 -- Personal settings
 -- ----------------------------------------------------------------------------
 vim.o.hidden = true       --When a buffer is abandoned then unload the buffer
-vim.o.autoread = true    --auto-reload the file if it is detectedd as changed
---vim.o.autochdir         -- change to the directoy which contains the open file
+vim.o.autoread = true     --auto-reload the file if it is detectedd as changed
+vim.o.autochdir = false   -- change to the directoy which contains the open file
 
 vim.o.smarttab = true    -- "when tab is pressed use tabstop number of spaces
 vim.o.tabstop = 2          -- "number of spaces a tab in the file counts for
@@ -119,6 +119,7 @@ vim.o.expandtab = true  -- "expand a tab characters into the space chars
 vim.o.autoindent = true  -- "automatically indent when starting a new line
 vim.o.smartindent = true -- "do c-like indenting when possible
 vim.o.wrap = false       -- "don't wrap the lines if it is longer than the split
+vim.o.fixendofline = false -- fix the end of line
 
 -- "makes insert-mode backspace work as expected
 -- "makes insert-mode arrow keys work as expected
