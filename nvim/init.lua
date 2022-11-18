@@ -1,5 +1,6 @@
 HOME = os.getenv("HOME");
-IS_WORK = 0
+IS_WORK = 0;
+IS_HOME = not IS_WORK;
 
 vim.o.compatible = false
 vim.o.encoding = 'utf-8'
@@ -100,7 +101,9 @@ vim.cmd('source ~/.vim/vimrcs/vim-numbertoggle/.vimrc')                    --"em
 vim.cmd('source ~/.vim/vimrcs/vim-sneak/.vimrc')                           --"empty (default s <>)
 vim.cmd('source ~/.vim/vimrcs/vim-surround/.vimrc')                        --"empty (default <cyd>s<>)
 vim.cmd('source ~/.vim/vimrcs/vim-airline/.vimrc')                         --"empty
---vim.cmd('source ~/.vim/vimrcs/telescope.nvim/.vimrc')                      --"<leader>p
+if IS_HOME then
+  vim.cmd('source ~/.vim/vimrcs/telescope.nvim/.vimrc')                      --"<leader>p
+end
 require('fzf')                    -- ~/.config/nvim/lua/fzf.lua            -- <leader>p
 require('lsp-config')             -- ~/.config/nvim/lua/lsp-config.lua,    -- <leader>l
 require('lsp-cmp')                -- ~/.config/nvim/lua/lsp-cmp.lua     
@@ -109,7 +112,6 @@ require('jj/run-command')         -- ~/.config/nvim/lua/jj/run-command.lua -- <l
 require('jj/ctrl_d')              -- ~/.config/nvim/lua/jj/ctrl_d.lua      -- <leader>m
 require("which-key").setup()
 --require('jj/formatter')         -- ~/.config/nvim/lua/jj/formatter.lua 
-
 
 -- Work
 require('coursehero')             -- ~/.config/nvim/lua/coursehero.lua     -- <leader>w
@@ -136,21 +138,18 @@ vim.o.backspace="indent,eol,start"
 vim.o.whichwrap = vim.o.whichwrap .. "<,>,[,],h,l"
 vim.o.listchars="tab:→ ,extends:›,precedes:‹,trail:·,eol:↲,nbsp:␣,space:·"
 
-vim.o.history=50            --keep up to 50 lines in the command-mode history
-
-if not IS_WORK then
-  vim.o.backup = false              -- "Do not create a backup before over-writing a file
-  vim.o.backupdir=HOME.."/.vimbak"  -- "Where to write backups to if you do write them
-  vim.o.directory=HOME.."/.vimswap" -- "Where to keep vim .swap files
-  vim.o.undodir=HOME.."/.vimundo"   -- "Where to keep vim undo files
-end
+vim.o.history=50                  -- keep up to 50 lines in the command-mode history
+vim.o.backup = false              -- "Do not create a backup before over-writing a file
+vim.o.backupdir=HOME.."/.vimbak"  -- "Where to write backups to if you do write them
+vim.o.directory=HOME.."/.vimswap" -- "Where to keep vim .swap files
+vim.o.undodir=HOME.."/.vimundo"   -- "Where to keep vim undo files
 
 vim.o.ruler=true               -- "show the line and columns number in the bottom status
 vim.o.colorcolumn="80,100"     -- "color column 80 and column 100
 vim.o.number=true              -- "print the line number in the left-margin
 vim.o.numberwidth=2            -- "number of columns to use to dispaly the number
 vim.o.cursorline=true          -- "highlight the line he cursor is currently on
-vim.o.signcolumn="yes"
+vim.o.signcolumn="no"
 
 vim.o.showcmd=true         -- "show partial-comands in the bottom bar
 vim.o.incsearch=true       -- "As you do '/' comamnds serach, highlight the findings

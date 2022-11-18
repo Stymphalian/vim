@@ -61,7 +61,6 @@ EOF
 
 nnoremap <leader>P <cmd>Telescope<cr>
 nnoremap <leader>p  <cmd>Telescope find_files<cr>
-"nnoremap <leader>p  <cmd>FzfFiles<cr>
 
 nnoremap <leader>pa <cmd>Telescope help_tags<cr>
 nnoremap <leader>pd <cmd>Telescope grep_string<cr>
