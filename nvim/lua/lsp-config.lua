@@ -84,7 +84,17 @@ local function setup_servers()
                "--config",
                "max_width=80",
             }
-          }
+          },
+          completion = {
+            postfix = {
+              -- actually removed the snippets
+              enable = false
+            },
+            snippets = {
+              -- Remove the snippets
+              custom = {}
+            }
+          },
         }
       }
   }

@@ -129,8 +129,8 @@ end
 
 
 local bufopts= {noremap=true, silent=true}
-vim.keymap.set('n', '<leader>mR', run_current_using_tmux_pane_switch, bufopts)
-vim.keymap.set('n', '<leader>mr', run_current_using_tmux_pane_noswitch, bufopts)
+vim.keymap.set('n', '<leader>mr', run_current_using_tmux_pane_switch, bufopts)
+vim.keymap.set('n', '<leader>mR', run_current_using_tmux_pane_noswitch, bufopts)
 vim.keymap.set('n', '<leader>mRW', run_current_using_tmux_win_switch, bufopts)
 vim.keymap.set('n', '<leader>mrw', run_current_using_tmux_win_noswitch, bufopts)
 --vim.keymap.set('n', '<leader>mR', run_current_using_nvim_terminal, bufopts)
