@@ -50,7 +50,6 @@ require('packer').startup(function(use)
   use 'tpope/vim-surround'
   use {'mg979/vim-visual-multi', branch='master'}
 
-
   -- Status-line
   use 'vim-airline/vim-airline'
   use 'vim-airline/vim-airline-themes'
@@ -81,6 +80,10 @@ require('packer').startup(function(use)
   use {'junegunn/fzf', run = ":call fzf#install()"}
   use 'junegunn/fzf.vim'
 
+  -- Work
+  use 'https://github.com/sickill/vim-monokai'
+  use 'psliwka/vim-smoothie'  -- smooth movement
+
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if packer_bootstrap then
@@ -97,7 +100,7 @@ vim.cmd('source ~/.vim/vimrcs/vim-numbertoggle/.vimrc')                    --"em
 vim.cmd('source ~/.vim/vimrcs/vim-sneak/.vimrc')                           --"empty (default s <>)
 vim.cmd('source ~/.vim/vimrcs/vim-surround/.vimrc')                        --"empty (default <cyd>s<>)
 vim.cmd('source ~/.vim/vimrcs/vim-airline/.vimrc')                         --"empty
-vim.cmd('source ~/.vim/vimrcs/telescope.nvim/.vimrc')                      --"<leader>p
+--vim.cmd('source ~/.vim/vimrcs/telescope.nvim/.vimrc')                      --"<leader>p
 require('fzf')                    -- ~/.config/nvim/lua/fzf.lua            -- <leader>p
 require('lsp-config')             -- ~/.config/nvim/lua/lsp-config.lua,    -- <leader>l
 require('lsp-cmp')                -- ~/.config/nvim/lua/lsp-cmp.lua     
@@ -106,6 +109,10 @@ require('jj/run-command')         -- ~/.config/nvim/lua/jj/run-command.lua -- <l
 require('jj/ctrl_d')              -- ~/.config/nvim/lua/jj/ctrl_d.lua      -- <leader>m
 require("which-key").setup()
 --require('jj/formatter')         -- ~/.config/nvim/lua/jj/formatter.lua 
+
+
+-- Work
+require('coursehero')             -- ~/.config/nvim/lua/coursehero.lua     -- <leader>w
 
 -- ----------------------------------------------------------------------------
 -- Personal settings
@@ -155,6 +162,7 @@ vim.o.modeline = false       -- "Disable reading modeline snppets from the file
 vim.o.mouse="a"              -- "Enable the mouse"
 --let loaded_matchparen=1    -- "Disable '{' highlight matching
 vim.o.lazyredraw=true        -- "Faster macros appliction
+vim.o.redrawtime=10000       -- increase redraw time for syntax highlighting
 
 vim.o.foldenable=true
 vim.o.foldmethod='manual'    -- " fold based on indent
@@ -168,6 +176,12 @@ vim.cmd([[
 -- Colorschemes
 require('material').setup()
 vim.cmd('colorscheme materialbox')
+--vim.cmd 'colorscheme oceanic_material'
+--vim.cmd 'colorscheme monokai'
+--vim.cmd('set termguicolors')
+--vim.o.termguicolors = true;
+--require('material').setup()
+--require('material').setup()
 
 
 local function map(mode, shortcut, command)
@@ -254,7 +268,7 @@ nmap("<leader>bc", ":cclose<cr>")  -- Close the quickfix window
 -- "  autocmd FileType cpp nnoremap <buffer> <leader>lt :execute GetOtherFile('test')<CR>
 -- "  autocmd FileType cpp nnoremap <buffer> <leader>lh :execute GetOtherFile('header')<CR>
 -- "augroup END
--- 
+--
 -- " Stuff
 -- "iabbrev <// </<C-X><C-O>
 -- ccl - close quickfix window
@@ -286,8 +300,8 @@ nmap("<leader>bc", ":cclose<cr>")  -- Close the quickfix window
 --
 -- {visual} g<Ctrl-a>  -- increment numbers from a visual selection 
 
--- "nnoremap <leader>ve  :e ~/.vim/.vimrc<cr>Gj|  "Open the vimrc in a new vertical 
-nmap('<leader>ve', ':e ~/.config/nvim/init.lua<cr>')  -- "Open the vimrc in a new vertical 
+-- "nnoremap <leader>ve  :e ~/.vim/.vimrc<cr>Gj|  "Open the vimrc in a new vertical
+nmap('<leader>ve', ':e ~/.config/nvim/init.lua<cr>')  -- "Open the vimrc in a new vertical
 nmap('<leader>vr', ':luafile $MYVIMRC<cr>| :e<cr>')  -- "Source the vimrc into the session
-nmap('<leader>vee',':e ~/.vim/.vimrc<cr>|')  -- "Open the vimrc in a new vertical 
+nmap('<leader>vee',':e ~/.vim/.vimrc<cr>|')  -- "Open the vimrc in a new vertical
 nmap('<leader>vrr',':source $MYVIMRC<cr>|')  -- "Source the vimrc into the session

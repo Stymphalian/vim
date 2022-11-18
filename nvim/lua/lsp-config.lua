@@ -46,7 +46,7 @@ local on_attach = function(_, bufnr)
   vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, bufopts)
   vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, bufopts)
   vim.keymap.set('n', ']d', vim.diagnostic.goto_next, bufopts)
-  end
+end
 
 local function setup_servers()
   require('mason').setup()
@@ -56,7 +56,9 @@ local function setup_servers()
         "rust_analyzer",
         "pyright",
         "jsonls",
+        "intelephense",
         "tsserver",
+        "gopls"
       }
   })
 
@@ -157,6 +159,15 @@ local function setup_servers()
     }
   }
 
+  require('lspconfig')['intelephense'].setup {
+    on_attach = on_attach,
+    flags = lsp_flags,
+    capabilities = capabilities,
+    settings = {
+      intelephense = {}
+    }
+  }
+
   require('lspconfig')['tsserver'].setup {
     on_attach = on_attach,
     flags = lsp_flags,
@@ -174,8 +185,21 @@ local function setup_servers()
   --    glslls = {}
   --  }
   --}
+  --
+  require('lspconfig')['gopls'].setup {
+    on_attach = on_attach,
+    flags = lsp_flags,
+    capabilities = capabilities,
+    settings = {
+      gopls = {}
+    }
+  }
 
 end
+
+--require('nlua.lsp.nvim').setup(require('lspconfig'), {
+  --on_attach = on_attach,
+--})
 
 setup_servers()
 
