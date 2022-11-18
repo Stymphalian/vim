@@ -19,6 +19,7 @@ local ensure_packer = function()
 end
 
 -- test 
+-- test2
 local packer_bootstrap = ensure_packer()
 
 require('packer').startup(function(use)
