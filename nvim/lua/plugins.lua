@@ -16,12 +16,12 @@ if fn.empty(fn.glob(install_path)) > 0 then
 end
 
 -- Autocommand that reloads neovim whenever you save the plugins.lua file
-vim.cmd([[
-  augroup packer_user_config
-    autocmd!
-    autocmd BufWritePost plugins.lua source <afile> | PackerSync
-  augroup end
-]])
+--vim.cmd([[
+--  augroup packer_user_config
+--    autocmd!
+--    autocmd BufWritePost plugins.lua source <afile> | PackerSync
+--  augroup end
+--]])
 
 -- Use a protected call so we don't error out on first use
 local status_ok, packer = pcall(require, "packer")
@@ -73,6 +73,9 @@ require('packer').startup(function(use)
   use {'mg979/vim-visual-multi', commit='724bd53'}    -- multi-cursors like sublime
   use {'psliwka/vim-smoothie', commit='df1e324'}      -- smooth movement
 
+  -- Debugger
+  use {'puremourning/vimspector', commit='56f469c'}   -- nvim debugger all-in-one
+
   -- Status-line
   use {'vim-airline/vim-airline', commit='d734be8'}
   use {'vim-airline/vim-airline-themes', commit='5552f5e'}
@@ -118,6 +121,8 @@ require('packer').startup(function(use)
   --use '~/dev/lab/vim/swit_ch.vim'
   --use {'https://github.com/ctrlpvim/ctrlp.vim', disable=true}
   --use 'https://github.com/Stymphalian/swit_ch.vim'
+  --use {'mfussenegger/nvim-dap', commit='6164368'}     -- nvim debugger
+  --use { "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap"} }
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins

@@ -19,6 +19,7 @@ require('ns/vim-numbertoggle') -- ~/.config/nvim/lua/ns/vim-numbertoggle.lua
 require('ns/vim-sneak')        -- ~/.config/nvim/lua/ns/vim-sneak.lua        -- empty (defualt s <>)
 require('ns/vim-surround')     -- ~/.config/nvim/lua/ns/vim-surround.lua     -- empty (defualt <cyd>s<>)
 require('ns/vim-airline')      -- ~/.config/nvim/lua/ns/vim-airline.lua      -- empty
+require('ns/dap')              -- ~/.config/nvim/lua/ns/dap.lua              -- <leader>e
 if IS_HOME then
   require('fzf')               -- ~/.config/nvim/lua/fzf.lua                 -- <leader>p
   require('ns/telescope')      -- ~/.config/nvim/lua/jj/telescope.lua        -- <leader>p

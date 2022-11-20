@@ -31,7 +31,7 @@ vim.o.colorcolumn="80,100"     -- "color column 80 and column 100
 vim.o.number=true              -- "print the line number in the left-margin
 vim.o.numberwidth=2            -- "number of columns to use to dispaly the number
 vim.o.cursorline=true          -- "highlight the line he cursor is currently on
-vim.o.signcolumn="no"
+vim.o.signcolumn="yes"
 
 vim.o.showcmd=true         -- "show partial-comands in the bottom bar
 vim.o.incsearch=true       -- "As you do '/' comamnds serach, highlight the findings
