@@ -5,25 +5,25 @@ else
 end
 
 local bufopts = { noremap = true, silent = true }
-vim.keymap.set('n', '<Leader>e5',  ':call vimspector#Launch()<CR>', bufopts);
-vim.keymap.set('n', '<Leader>e7',  ':call vimspector#Restart()<CR>', bufopts);
-vim.keymap.set('n', '<Leader>e8',  ':call vimspector#Pause()<CR>', bufopts);
-vim.keymap.set('n', '<Leader>e9',  ':call vimspector#Stop()<CR>', bufopts);
-vim.keymap.set('n', '<Leader>e0',  ':call vimspector#Reset()<CR>', bufopts);
-vim.keymap.set('n', '<Leader>ec',  ':call vimspector#Continue()<CR>', bufopts);
+vim.keymap.set('n', '<Leader>d5',  ':call vimspector#Launch()<CR>', bufopts);
+vim.keymap.set('n', '<Leader>d7',  ':call vimspector#Restart()<CR>', bufopts);
+vim.keymap.set('n', '<Leader>d8',  ':call vimspector#Pause()<CR>', bufopts);
+vim.keymap.set('n', '<Leader>d9',  ':call vimspector#Stop()<CR>', bufopts);
+vim.keymap.set('n', '<Leader>d0',  ':call vimspector#Reset()<CR>', bufopts);
+vim.keymap.set('n', '<Leader>dc',  ':call vimspector#Continue()<CR>', bufopts);
 
-vim.keymap.set('n', '<Leader>eg',  ':call vimspector#GoToCurrentLine()<CR>', bufopts);
-vim.keymap.set('n', '<Leader>er',  ':call vimspector#RunToCursor()<CR>', bufopts);
+vim.keymap.set('n', '<Leader>di',  ':call vimspector#GoToCurrentLine()<CR>', bufopts);
+vim.keymap.set('n', '<Leader>dr',  ':call vimspector#RunToCursor()<CR>', bufopts);
 
-vim.keymap.set('n', '<Leader>et',  ':call vimspector#ToggleBreakpoint()<CR>', bufopts);
-vim.keymap.set('n', '<Leader>eT',  ':call vimspector#ClearBreakpoints()<CR>', bufopts);
+vim.keymap.set('n', '<Leader>dt',  ':call vimspector#ToggleBreakpoint()<CR>', bufopts);
+vim.keymap.set('n', '<Leader>dT',  ':call vimspector#ClearBreakpoints()<CR>', bufopts);
 
-vim.keymap.set('n', '<Leader>ek',  '<Plug>VimspectorReset', bufopts);
---vim.keymap.set('n', '<Leader>eh',  '<Plug>VimspectorStepOut', bufopts);
-vim.keymap.set('n', '<Leader>eo',  '<Plug>VimspectorStepOut', bufopts);
---vim.keymap.set('n', '<Leader>el',  '<Plug>VimspectorStepInto', bufopts);
-vim.keymap.set('n', '<Leader>ei',  '<Plug>VimspectorStepInto', bufopts);
-vim.keymap.set('n', '<Leader>ej',  '<Plug>VimspectorStepOver', bufopts);
+vim.keymap.set('n', '<Leader>dk',  '<Plug>VimspectorReset', bufopts);
+vim.keymap.set('n', '<Leader>dh',  '<Plug>VimspectorStepOut', bufopts);
+--vim.keymap.set('n', '<Leader>do',  '<Plug>VimspectorStepOut', bufopts);
+vim.keymap.set('n', '<Leader>dl',  '<Plug>VimspectorStepInto', bufopts);
+--vim.keymap.set('n', '<Leader>di',  '<Plug>VimspectorStepInto', bufopts);
+vim.keymap.set('n', '<Leader>dj',  '<Plug>VimspectorStepOver', bufopts);
 
 --[[
 

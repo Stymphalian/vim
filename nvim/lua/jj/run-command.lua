@@ -6,6 +6,10 @@ local function get_command(extension)
       return "python"
   elseif extension == "rs" then
       return "cargo run --"
+  elseif extension == "frag" then
+      return "cargo run --"
+  elseif extension == "vert" then
+      return "cargo run --"
   end
   return "cat"
 end
