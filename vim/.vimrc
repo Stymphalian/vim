@@ -134,9 +134,9 @@ set listchars=tab:→\ ,extends:›,precedes:‹,trail:·,eol:↲,nbsp:␣,space
 set history=50           "keep up to 50 lines in the command-mode history
 if !iswork 
   set nobackup             "Do not create a backup before over-writing a file
-  set backupdir=~/.vim/.vimbak  "Where to write backups to if you do write them
-  set directory=~/.vim/.vimswap "Where to keep vim .swap files
-  set undodir=~/.vim/.vimundo   "Where to keep vim undo files
+  set backupdir=~/.vim/vimbak  "Where to write backups to if you do write them
+  set directory=~/.vim/vimswap "Where to keep vim .swap files
+  set undodir=~/.vim/vimundo   "Where to keep vim undo files
 endif
 
 set ruler               "show the line and columns number in the bottom status
