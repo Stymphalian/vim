@@ -6,3 +6,4 @@ noin
 *.swp
 vim/default.session.vim*
 vim/plugged
+nvim-binary/nvim-linux-x86_64
