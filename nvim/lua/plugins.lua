@@ -64,31 +64,31 @@ require('packer').startup(function(use)
   use {'folke/which-key.nvim', commit='61553ae'}      -- tooltip to show key-mappings
 
   -- Version Control
-  use {'https://github.com/tpope/vim-fugitive', commit='01f3e0a'}
-  use {'airblade/vim-gitgutter', commit='400a120'}
+  --use {'https://github.com/tpope/vim-fugitive', commit='01f3e0a'}
+  --use {'airblade/vim-gitgutter', commit='400a120'}
 
   -- Easy movement
-  use {'justinmk/vim-sneak', commit='93395f5'}        -- sneak around with s<two-letter-prefix>
-  use {'tpope/vim-surround', commit="3d188ed"}        -- surround things with quotes, etc
-  use {'mg979/vim-visual-multi', commit='724bd53'}    -- multi-cursors like sublime
-  use {'psliwka/vim-smoothie', commit='df1e324'}      -- smooth movement
+  --use {'justinmk/vim-sneak', commit='93395f5'}        -- sneak around with s<two-letter-prefix>
+  --use {'tpope/vim-surround', commit="3d188ed"}        -- surround things with quotes, etc
+  --use {'mg979/vim-visual-multi', commit='724bd53'}    -- multi-cursors like sublime
+  --use {'psliwka/vim-smoothie', commit='df1e324'}      -- smooth movement
 
   -- Debugger
-  use {'puremourning/vimspector', commit='56f469c'}   -- nvim debugger all-in-one
+  --use {'puremourning/vimspector', commit='56f469c'}   -- nvim debugger all-in-one
 
   -- Status-line
-  use {'vim-airline/vim-airline', commit='d734be8'}
-  use {'vim-airline/vim-airline-themes', commit='5552f5e'}
+  use {'vim-airline/vim-airline', commit='499ae85'}
+  use {'vim-airline/vim-airline-themes', commit='77aab8c'}
 
   -- Autocomplete
-  use {'williamboman/mason.nvim', commit='e14b20c'}             -- General package downloader
-  use {'williamboman/mason-lspconfig.nvim', commit='a910b4d'}   -- Mason LSP downloader
-  use {'neovim/nvim-lspconfig', commit='5f4b1fa'}               -- Neovim's LSP client configs
-  use {'hrsh7th/nvim-cmp', commit="e94d34893"}                  -- Autocompletion plugin
-  use {'hrsh7th/vim-vsnip', commit="7de8a71e5"}                 -- Autocomplete snippets 
-  use {'hrsh7th/cmp-nvim-lsp', commit="3cf38d9c95"}             -- LSP source for nvim-cmp
-  use {'mhartington/formatter.nvim', commit="88aa6"}            -- formatter 
-  use {'Raimondi/delimitMate', commit='537a1da'}                -- bracket completion
+  --use {'williamboman/mason.nvim', commit='e14b20c'}             -- General package downloader
+  --use {'williamboman/mason-lspconfig.nvim', commit='a910b4d'}   -- Mason LSP downloader
+  --use {'neovim/nvim-lspconfig', commit='5f4b1fa'}               -- Neovim's LSP client configs
+  --use {'hrsh7th/nvim-cmp', commit="e94d34893"}                  -- Autocompletion plugin
+  --use {'hrsh7th/vim-vsnip', commit="7de8a71e5"}                 -- Autocomplete snippets 
+  --use {'hrsh7th/cmp-nvim-lsp', commit="3cf38d9c95"}             -- LSP source for nvim-cmp
+  --use {'mhartington/formatter.nvim', commit="88aa6"}            -- formatter 
+  --use {'Raimondi/delimitMate', commit='537a1da'}                -- bracket completion
 
   -- Themes
   use {'tomasr/molokai', commit='c67bdfc'}
@@ -97,15 +97,15 @@ require('packer').startup(function(use)
   use {'sickill/vim-monokai', commit='6fb52e3'}
 
   -- Language Syntax
-  use {'sheerun/vim-polyglot', commit='bc8a81d'}
+  --use {'sheerun/vim-polyglot', commit='bc8a81d'}
 
   -- Telescope plugins
-  use {'nvim-lua/plenary.nvim', commit='4b7e520'}
-  use {'nvim-treesitter/nvim-treesitter', run=':TSUpdate', commit='3256eb2'}
-  use {'nvim-telescope/telescope-fzf-native.nvim', run='make', commit='65c0ee3'}
-  use {'nvim-telescope/telescope.nvim', commit='4bd4205'}
-  use {'junegunn/fzf', run = ":call fzf#install()", commit='0881a6b'}
-  use {'junegunn/fzf.vim', commit='9ceac71'}
+  --use {'nvim-lua/plenary.nvim', commit='4b7e520'}
+  --use {'nvim-treesitter/nvim-treesitter', run=':TSUpdate', commit='3256eb2'}
+  --use {'nvim-telescope/telescope-fzf-native.nvim', run='make', commit='65c0ee3'}
+  --use {'nvim-telescope/telescope.nvim', commit='4bd4205'}
+  --use {'junegunn/fzf', run = ":call fzf#install()", commit='0881a6b'}
+  --use {'junegunn/fzf.vim', commit='9ceac71'}
 
   -- Work
   -- N/A

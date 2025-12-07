@@ -5,7 +5,7 @@ IS_HOME = not IS_WORK;
 vim.o.compatible = false
 vim.o.encoding = 'utf-8'
 vim.o.fileencoding = 'utf-8'
-vim.o.syntax = true
+--vim.o.syntax = true
 vim.g.mapleader = ','
 
 require('plugins');            -- ~/.config/nvim/lua/plugins.lua
@@ -13,27 +13,27 @@ require('options');            -- ~/.config/nvim/lua/options.lua
 require('colorschemes');       -- ~/.config/nvim/lua/colorschemes.lua
 
 -- Plugin vimrcs
-require('ns/nerdtree')         -- ~/.config/nvim/lua/ns/nerdtree.lua         -- <leader>d
+--require('ns/nerdtree')         -- ~/.config/nvim/lua/ns/nerdtree.lua         -- <leader>d
 require('ns/nerdcommenter')    -- ~/.config/nvim/lua/ns/nerdcommenter.lua    -- <leader>/
-require('ns/vim-numbertoggle') -- ~/.config/nvim/lua/ns/vim-numbertoggle.lua
-require('ns/vim-sneak')        -- ~/.config/nvim/lua/ns/vim-sneak.lua        -- empty (defualt s <>)
-require('ns/vim-surround')     -- ~/.config/nvim/lua/ns/vim-surround.lua     -- empty (defualt <cyd>s<>)
+--require('ns/vim-numbertoggle') -- ~/.config/nvim/lua/ns/vim-numbertoggle.lua
+--require('ns/vim-sneak')        -- ~/.config/nvim/lua/ns/vim-sneak.lua        -- empty (defualt s <>)
+--require('ns/vim-surround')     -- ~/.config/nvim/lua/ns/vim-surround.lua     -- empty (defualt <cyd>s<>)
 require('ns/vim-airline')      -- ~/.config/nvim/lua/ns/vim-airline.lua      -- empty
-require('ns/dap')              -- ~/.config/nvim/lua/ns/dap.lua              -- <leader>e
+--require('ns/dap')              -- ~/.config/nvim/lua/ns/dap.lua              -- <leader>e
 if IS_HOME then
-  require('fzf')               -- ~/.config/nvim/lua/fzf.lua                 -- <leader>p
-  require('ns/telescope')      -- ~/.config/nvim/lua/jj/telescope.lua        -- <leader>p
+  --require('fzf')               -- ~/.config/nvim/lua/fzf.lua                 -- <leader>p
+  --require('ns/telescope')      -- ~/.config/nvim/lua/jj/telescope.lua        -- <leader>p
 end
-require('lsp-config')          -- ~/.config/nvim/lua/lsp-config.lua,         -- <leader>l
-require('lsp-cmp')             -- ~/.config/nvim/lua/lsp-cmp.lua     
-require('delimitMate')         -- ~/.config/nvim/lua/delimitMate.lua  
-require('jj/run-command')      -- ~/.config/nvim/lua/jj/run-command.lua      -- <leader>m
-require('jj/ctrl_d')           -- ~/.config/nvim/lua/jj/ctrl_d.lua           -- <leader>m
-require("which-key").setup()
+--require('lsp-config')          -- ~/.config/nvim/lua/lsp-config.lua,         -- <leader>l
+--require('lsp-cmp')             -- ~/.config/nvim/lua/lsp-cmp.lua     
+--require('delimitMate')         -- ~/.config/nvim/lua/delimitMate.lua  
+--require('jj/run-command')      -- ~/.config/nvim/lua/jj/run-command.lua      -- <leader>m
+--require('jj/ctrl_d')           -- ~/.config/nvim/lua/jj/ctrl_d.lua           -- <leader>m
+--require("which-key").setup()
 
 -- Work
 if IS_WORK then
-  require('coursehero')        -- ~/.config/nvim/lua/coursehero.lua          -- <leader>w
+  --require('coursehero')        -- ~/.config/nvim/lua/coursehero.lua          -- <leader>w
 end
 
 require('keymaps');            -- ~/.config/nvim/lua/keymaps.lua

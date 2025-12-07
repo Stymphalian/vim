@@ -22,9 +22,9 @@ vim.o.listchars="tab:→ ,extends:›,precedes:‹,trail:·,eol:↲,nbsp:␣,spa
 
 vim.o.history=50                  -- keep up to 50 lines in the command-mode history
 vim.o.backup = false              -- "Do not create a backup before over-writing a file
-vim.o.backupdir=HOME.."/.vimbak"  -- "Where to write backups to if you do write them
-vim.o.directory=HOME.."/.vimswap" -- "Where to keep vim .swap files
-vim.o.undodir=HOME.."/.vimundo"   -- "Where to keep vim undo files
+vim.o.backupdir=HOME.."/.vim/.vimbak"  -- "Where to write backups to if you do write them
+vim.o.directory=HOME.."/.vim/.vimswap" -- "Where to keep vim .swap files
+vim.o.undodir=HOME.."/.vim/.vimundo"   -- "Where to keep vim undo files
 
 vim.o.ruler=true               -- "show the line and columns number in the bottom status
 vim.o.colorcolumn="80,100"     -- "color column 80 and column 100
